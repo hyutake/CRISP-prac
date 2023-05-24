@@ -3,12 +3,11 @@ import TaskItem from "./TaskItem";
 import classes from "./TaskList.module.css";
 
 function TaskList() {
-	const displayTasks = useSelector((state) => state.task.tasks);
+	const tasks = useSelector((state) => state.task.tasks);
 
 	return (
 		<div className={classes["task-list"]}>
-			{/* {tasks.map(task => <Task title={task.title} desc={task.desc} deadline={task.deadline} />)} */}
-			{displayTasks.map((task) => (
+			{tasks.map((task) => (
 				<TaskItem
 					key={task.id}
 					id={task.id}

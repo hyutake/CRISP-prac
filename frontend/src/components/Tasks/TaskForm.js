@@ -1,9 +1,36 @@
+import { useDispatch } from 'react-redux';
+import { taskActions } from '../../store/task-slice';
+import { useRef } from 'react';
 import Modal from '../UI/Modal';
 import classes from "./TaskForm.module.css";
 
 function TaskForm({onHide, task}) {
+	const dispatch = useDispatch();
+
+	// I forgor whats the best way to perform input validation :/
+	const titleRef = useRef();
+	const descRef = useRef();
+	const deadlineRef = useRef();
+
 	function submitHandler(event) {
 		event.preventDefault();
+		
+		// get the submitted values
+		const enteredTitle = titleRef.current.value;
+		const enteredDesc = descRef.current.value;
+		const enteredDeadline = deadlineRef.current.value;
+
+		// perform checks
+		if(enteredTitle.trim().length === 0 || enteredDesc.trim().length === 0 || enteredDeadline.trim().length === 0) {
+			// report error (somehow), prolly by changing the styles
+			return;
+		}
+
+		dispatch(taskActions.addTask({
+			title: enteredTitle,
+			desc: enteredDesc,
+			deadline: enteredDeadline
+		}))
 	}
 
 	return (
@@ -13,6 +40,7 @@ function TaskForm({onHide, task}) {
 					<p>
 						<label htmlFor="title">Title</label>
 						<input
+							ref={titleRef}
 							id="title"
 							type="text"
 							name="title"
@@ -24,6 +52,7 @@ function TaskForm({onHide, task}) {
 					<p>
 						<label htmlFor="desc">Description</label>
 						<textarea
+							ref={descRef}
 							id="desc"
 							type="text"
 							rows="5"
@@ -36,9 +65,12 @@ function TaskForm({onHide, task}) {
 					<p>
 						<label htmlFor="deadline">Deadline</label>
 						<input
+							ref={deadlineRef}
 							id="deadline"
 							type="date"
 							name="deadline"
+							min="2023-05-01"
+							max="2023-12-15"
                             defaultValue={task ? task.deadline : ''}
 							required
 						/>

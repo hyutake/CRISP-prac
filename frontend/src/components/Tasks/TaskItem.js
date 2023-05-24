@@ -27,7 +27,7 @@ function TaskItem(props) {
 			setShowDelete(false);
 		}
 	};
-
+ 
 	const mouseLeaveHandler = () => {
 		setShowDelete(false);
 	};

@@ -45,7 +45,7 @@
 	position:absolute;
 	cursor: pointer;
 	top: 0.1rem;
-	right: 0.1rem;
+	right: 0rem;
 }
 
 .task-item button:hover {
