@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import TaskList from './components/Tasks/TaskList';
+import MainHeader from './components/Layout/MainHeader';
 
 function App() {
   return(
-    <h1>Hello world!</h1>
+    <Fragment>
+      <MainHeader />
+      <TaskList />
+    </Fragment>
   )
 }
 
