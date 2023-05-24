@@ -50,6 +50,7 @@
 
 .task-item button:hover {
 	background-color: var(--color-grey-100);
+	color:red;
 	cursor: pointer;
 }
 

@@ -1,12 +1,15 @@
 import { useState } from "react";
 
+import classes from "./TaskItem.module.css";
 import Card from "../UI/Card";
 import TaskDeadline from "./TaskDeadline";
 
-import classes from "./TaskItem.module.css";
+import { useDispatch } from "react-redux";
+import { taskActions } from "../../store/task-slice";
 
 function TaskItem(props) {
 	const [showDelete, setShowDelete] = useState(false);
+	const dispatch = useDispatch();
 
 	const mouseMoveHandler = (event) => {
 		const componentRect = event.target.getBoundingClientRect();
@@ -27,12 +30,11 @@ function TaskItem(props) {
 
 	const mouseLeaveHandler = () => {
 		setShowDelete(false);
-	}
+	};
 
 	const deleteTaskHandler = () => {
-		console.log(props.id);
-		props.onDeleteTask(props.id);
-	}
+		dispatch(taskActions.removeTask(props.id));
+	};
 
 	// title, desc, deadline
 	return (
@@ -43,7 +45,11 @@ function TaskItem(props) {
 				<p className={classes["task-item__description"]}>
 					{props.desc}
 				</p>
-				{showDelete && <button type='button' onClick={deleteTaskHandler}>X</button>}
+				{showDelete && (
+					<button type="button" onClick={deleteTaskHandler}>
+						X
+					</button>
+				)}
 			</Card>
 		</li>
 	);
