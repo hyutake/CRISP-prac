@@ -1,0 +1,71 @@
+.form {
+	margin: 0.5rem 0;
+	padding: 0 10%;
+	color:black;
+}
+
+.form label {
+	font-weight: bold;
+	display: block;
+	margin-bottom: 0.5rem;
+}
+
+.form input,
+.form textarea {
+	display: block;
+	width: 100%;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	background-color: white;
+	color: black;
+	font: inherit;
+	line-height: 1.5rem;
+	padding: 0 0.25rem;
+}
+
+.form input:focus,
+.form textarea:focus {
+	outline: none;
+	background: var(--color-primary-300);
+}
+
+.form.invalid input,
+.form.invalid textarea {
+	border-color: red;
+	background: #ffd7d7;
+}
+
+.form.invalid label {
+	color: red;
+}
+
+.actions {
+	display: flex;
+	gap: 1rem;
+	justify-content: center;
+}
+
+.actions button {
+	font: inherit;
+	cursor: pointer;
+	padding: 0.5rem 1.5rem;
+	border-radius: 4px;
+	background-color: var(--color-gray-300);
+	color: var(--color-gray-800);
+	border: none;
+}
+
+.actions button[type="button"] {
+	background-color: transparent;
+	border: 1px solid #ccc;
+	color: black;
+}
+
+.actions button:hover {
+	background-color: var(--color-primary-300);
+}
+
+.actions button[type="button"]:hover {
+	background-color: var(--color-gray-800);
+	color: var(--color-primary-400);
+}

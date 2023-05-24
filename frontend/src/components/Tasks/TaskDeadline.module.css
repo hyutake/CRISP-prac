@@ -12,15 +12,15 @@
   }
   
   .task-date__month {
-    font-size: 0.75rem;
+    font-size: 1rem;
     font-weight: bold;
   }
   
   .task-date__year {
-    font-size: 0.75rem;
+    font-size: 1rem;
   }
   
   .task-date__day {
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     font-weight: bold;
   }

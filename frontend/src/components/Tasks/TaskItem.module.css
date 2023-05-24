@@ -17,8 +17,7 @@
 	flex: 1;
 }
 
-.task-item h2
-.task-item p {
+.task-item h2 .task-item p {
 	color: #3a3a3a;
 	font-size: 1.5rem;
 	flex: 1;
@@ -37,4 +36,23 @@
 	.task-item__description h2 {
 		font-size: 1.25rem;
 	}
+}
+
+.actions {
+	display: flex;
+}
+
+.actions button {
+	background-color: transparent;
+	border: 1px solid white;
+	margin-left: 0.5rem;
+	padding: 0.3rem 1rem;
+	color: white;
+	cursor: pointer;
+}
+
+.actions button:hover,
+.actions button:active {
+	background-color: white;
+	color: black;
 }

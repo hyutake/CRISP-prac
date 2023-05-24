@@ -1,12 +1,12 @@
 import classes from './MainHeader.module.css';
-
-function MainHeader() {
+ 
+function MainHeader({onAddTask}) {
     return (
         <header className={classes.header}>
             <h1>MainHeader</h1>
             <nav>
-                <ul>
-                    <li>Tasks</li>
+                <ul className={classes.list}>
+                    <li><button type='button' onClick={onAddTask}>Add Task</button></li>
                 </ul>
             </nav>
         </header>

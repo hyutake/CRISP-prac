@@ -1,4 +1,4 @@
-import Task from './Task';
+import TaskItem from './TaskItem';
 import classes from './TaskList.module.css';
 
 const DUMMY_TASKS = [
@@ -13,7 +13,7 @@ function TaskList({ tasks }) {
     return (
         <div className={classes['task-list']}>
             {/* {tasks.map(task => <Task title={task.title} desc={task.desc} deadline={task.deadline} />)} */}
-            {displayTasks.map(task => <Task key={task.id} title={task.title} desc={task.desc} deadline={task.deadline} />)}
+            {displayTasks.map(task => <TaskItem key={task.id} title={task.title} desc={task.desc} deadline={task.deadline} />)}
         </div>
     );
 }

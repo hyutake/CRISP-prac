@@ -1,15 +1,38 @@
 .header {
-	position: fixed;
-	top: 0;
-	left: 0;
 	width: 100%;
 	height: 5rem;
-	background-color: #0d0d0d;
 	padding: 0 10%;
-	color: white;
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
-	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-	z-index: 10;
-}
+	justify-content: space-between;
+	background-color: #0d0d0d;
+  }
+  
+  .header h1 {
+	color: white;
+  }
+  
+  .header ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+  }
+
+  .list {
+	display: flex;
+  }
+
+  .list button {
+	background-color: transparent;
+	border: 1px solid white;
+	margin-left: 0.5rem;
+	padding: 0.3rem 1rem;
+	color: white;
+	cursor: pointer;
+  }
+
+  .list button:hover,
+  .list button:active {
+	background-color: white;
+	color: black;
+  }
