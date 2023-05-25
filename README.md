@@ -21,13 +21,14 @@ You are required to build a simple task manager application using React.js for t
   <li>Connect to a MongoDB database using a MongoDB driver or an ORM like Mongoose.</li>
   <li>Implement API endpoints to create, read, update, and delete tasks in the database.</li>
 </ol>
-ß
+
 ## Database:
 <ol>
   <li>Set up a MongoDB database to store the tasks.</li>
   <li>Design a schema for the tasks collection with fields like title, description, and deadline.</li>
 </ol>
 <br>
+
 # Implemented thus far:
 <ol>
   <li>Local add task via button on MainHeader</li>
