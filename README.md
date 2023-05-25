@@ -13,6 +13,7 @@ You are required to build a simple task manager application using React.js for t
   <li>Provide functionality to edit and delete tasks.</li>
   <li>Add appropriate form validation and error handling.</li>
 </ol>
+
 ## Backend:
 <ol>
   <li>Create a Node.js server using a framework like Express.js.</li>
@@ -20,6 +21,7 @@ You are required to build a simple task manager application using React.js for t
   <li>Connect to a MongoDB database using a MongoDB driver or an ORM like Mongoose.</li>
   <li>Implement API endpoints to create, read, update, and delete tasks in the database.</li>
 </ol>
+ß
 ## Database:
 <ol>
   <li>Set up a MongoDB database to store the tasks.</li>
