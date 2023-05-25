@@ -12,19 +12,22 @@ function TaskItem(props) {
 	const dispatch = useDispatch();
 
 	const mouseMoveHandler = (event) => {
-		const componentRect = event.currentTarget.getBoundingClientRect();
-		// where the cursor is relative to the top left of the component (strictly within the component)
-		const cursorX = event.clientX - componentRect.left;
-		const cursorY = event.clientY - componentRect.top;
-
-		const threshold = 7; // Define the threshold(+/- pixels) for being near the top right corner
-
-		const cursorAtTopRight =
-			cursorX >= componentRect.width - threshold && cursorY <= threshold;
-		if (cursorAtTopRight) {
-			setShowDelete(true);
-		} else {
-			setShowDelete(false);
+		const targetIsCard = event.target.id === 'card';
+		if(targetIsCard) {
+			const componentRect = event.currentTarget.getBoundingClientRect();
+			// where the cursor is relative to the top left of the component (strictly within the component)
+			const cursorX = event.clientX - componentRect.left;
+			const cursorY = event.clientY - componentRect.top;
+	
+			const threshold = 30; // Define the threshold(+/- pixels) for being near the top right corner
+	
+			const cursorAtTopRight =
+				cursorX >= componentRect.width - threshold && cursorY <= threshold;
+			if (cursorAtTopRight) {
+				setShowDelete(true);
+			} else {
+				setShowDelete(false);
+			}
 		}
 	};
  
