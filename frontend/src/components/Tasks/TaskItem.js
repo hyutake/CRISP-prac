@@ -36,23 +36,40 @@ function TaskItem(props) {
 		dispatch(taskActions.removeTask(props.id));
 	};
 
+	const editTaskHandler = () => {
+
+	};
+
 	// title, desc, deadline
 	return (
 		<li onMouseMove={mouseMoveHandler} onMouseLeave={mouseLeaveHandler}>
-			<Card className={classes["task-item"]}>
-				<TaskDeadline date={props.deadline} />
-				<h2>{props.title}</h2>
-				<p className={classes["task-item__description"]}>
-					{props.desc}
-				</p>
-				{showDelete && (
-					<button type="button" onClick={deleteTaskHandler}>
-						X
-					</button>
-				)}
-			</Card>
+		  <Card className={classes["task-item"]}>
+			<TaskDeadline date={props.deadline} />
+			<h2>{props.title}</h2>
+			<p className={classes["task-item__description"]}>
+			  {props.desc}
+			</p>
+			<div className={classes["actions"]}>
+			  {showDelete && (
+				<button
+				  type="button"
+				  onClick={deleteTaskHandler}
+				  className={classes["delete-button"]}
+				>
+				  X
+				</button>
+			  )}
+			  <button
+				type="button"
+				onClick={editTaskHandler}
+				className={classes["edit-button"]}
+			  >
+				Edit
+			  </button>
+			</div>
+		  </Card>
 		</li>
-	);
+	  );
 }
 
 export default TaskItem;

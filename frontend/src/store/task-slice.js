@@ -58,6 +58,14 @@ const taskSlice = createSlice({
 				state.quantity--;
 			}
 		},
+		// editTask(state, action){
+		// 	const id = action.payload;
+		// 	for (task in state.tasks) {
+		// 		if (task.id === id){
+
+		// 		}
+		// 	}
+		// }
 	},
 });
 

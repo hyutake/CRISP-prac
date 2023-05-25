@@ -39,36 +39,53 @@
 	}
 }
 
-.task-item button {
+/* .task-item button {
+	background: none;
+	border: none;
+	cursor: pointer;
+  }
+  
+  .task-item button:hover {
+	background-color: var(--color-grey-100);
+	color: red;
+	cursor: pointer;
+  } */
+  
+  .actions {
+	display: flex;
+	align-items: center;
+  }
+  
+  .actions .delete-button {
 	background: none;
 	border: none;
 	position:absolute;
 	cursor: pointer;
 	top: 0.1rem;
 	right: 0rem;
-}
-
-.task-item button:hover {
+  }
+  
+  .actions .delete-button:hover,
+  .actions .delete-button:active {
 	background-color: var(--color-grey-100);
 	color:red;
 	cursor: pointer;
-}
-
-.actions {
-	display: flex;
-}
-
-.actions button {
+  }
+  
+  .actions .edit-button {
+	/* Add the styles for the edit button here */
 	background-color: transparent;
 	border: 1px solid white;
 	margin-left: 0.5rem;
 	padding: 0.3rem 1rem;
 	color: white;
 	cursor: pointer;
-}
+  }
 
-.actions button:hover,
-.actions button:active {
+
+  .actions .edit-button:hover,
+  .actions .edit-button:active{
 	background-color: white;
 	color: black;
 }
+
