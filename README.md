@@ -37,3 +37,22 @@ You are required to build a simple task manager application using React.js for t
   <li>Bunch of styles "borrowed" from the udemy projects, should look familiar :></li>
 </ol>
 
+# To-do (non-exhaustive):
+<ul>
+  <li>Frontend</li>
+  <ol>
+    <li>Add edit functionality to tasks - smth like onClick task -> modal w/ TaskForm but already filled in w/ task's data</li>
+    <li>Add form validation - cannot be empty etc., maybe also change css styles if invalid for visual effect</li>
+    <li>Add error handling (idk)</li>
+  </ol>
+  <li>Backend</li>
+  <ol>
+    <li>Learn how to integrate node.js w/ mongodb</li>
+    <li>Everything else in "Backend requirements"</li>
+  </ol>
+  <li>Database</li>
+  <ol>
+    <li>Learn how to integrate node.js w/ mongodb + mongodb in general</li>
+    <li>Everything else in "Database requirements"</li>
+  </ol>
+</ul>
