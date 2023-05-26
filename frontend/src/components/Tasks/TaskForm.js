@@ -25,35 +25,38 @@ function TaskForm() {
 
 	function submitHandler(event) {
 		event.preventDefault();
-
+	  
 		// get the submitted values
 		const enteredTitle = titleRef.current.value;
 		const enteredDesc = descRef.current.value;
 		const enteredDeadline = deadlineRef.current.value;
-
+	  
 		// perform checks
 		if (
-			enteredTitle.trim().length === 0 ||
-			enteredDesc.trim().length === 0 ||
-			enteredDeadline.trim().length === 0
+		  enteredTitle.trim().length === 0 ||
+		  enteredDesc.trim().length === 0 ||
+		  enteredDeadline.trim().length === 0
 		) {
 			// report error (somehow), prolly by changing the styles
 			return;
 		}
-
-		const newTask = {
-			title: enteredTitle,
-			desc: enteredDesc,
-			deadline: enteredDeadline,
+	  
+		const editedTask = {
+		  ...task,
+		  title: enteredTitle,
+		  desc: enteredDesc,
+		  deadline: enteredDeadline
 		};
-
+	  
 		if (isEditTask) {
-			dispatch(taskActions.editTask(task));
+		  dispatch(taskActions.editTask(editedTask));
 		} else {
-			dispatch(taskActions.addTask(newTask));
+		  dispatch(taskActions.addTask(editedTask));
 		}
+	  
 		onHide();
-	}
+	  }
+	  
 
 	return (
 		<Modal onHide={onHide}>

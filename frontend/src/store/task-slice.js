@@ -75,7 +75,7 @@ const taskSlice = createSlice({
 			existingTask.title = editedTask.title;
 			existingTask.desc = editedTask.desc;
 			existingTask.deadline = editedTask.deadline;
-		}
+		}  
 	},
 });
 
