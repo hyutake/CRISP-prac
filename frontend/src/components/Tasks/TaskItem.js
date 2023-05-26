@@ -6,6 +6,7 @@ import TaskDeadline from "./TaskDeadline";
 
 import { useDispatch } from "react-redux";
 import { taskActions } from "../../store/task-slice";
+import { uiActions } from "../../store/ui-slice";
 
 function TaskItem(props) {
 	const [showDelete, setShowDelete] = useState(false);
@@ -40,7 +41,13 @@ function TaskItem(props) {
 	};
 
 	const editTaskHandler = () => {
-
+		const curTask = {
+			id: props.id,
+			title:props.title,
+			desc:props.desc,
+			deadline:props.deadline 
+		};
+		dispatch(uiActions.showEditTaskForm(curTask));
 	};
 
 	// title, desc, deadline

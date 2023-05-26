@@ -1,36 +1,58 @@
-import { useDispatch } from 'react-redux';
-import { taskActions } from '../../store/task-slice';
-import { useRef } from 'react';
-import Modal from '../UI/Modal';
+import { useSelector, useDispatch } from "react-redux";
+import { taskActions } from "../../store/task-slice";
+import { useRef } from "react";
+import Modal from "../UI/Modal";
 import classes from "./TaskForm.module.css";
+import { uiActions } from "../../store/ui-slice";
 
-function TaskForm({onHide, task}) {
+function TaskForm() {
 	const dispatch = useDispatch();
+	// const isEdit = useSelector((state) => state.ui.isEdit)
+	const task = useSelector((state) => state.ui.task);
 
 	// I forgor whats the best way to perform input validation :/
 	const titleRef = useRef();
 	const descRef = useRef();
 	const deadlineRef = useRef();
 
+	const isEditTask = task ? true : false;
+
+	console.log("isEditTask: " + isEditTask);
+
+	function onHide() {
+		dispatch(uiActions.hideTaskForm());
+	}
+
 	function submitHandler(event) {
 		event.preventDefault();
-		
+
 		// get the submitted values
 		const enteredTitle = titleRef.current.value;
 		const enteredDesc = descRef.current.value;
 		const enteredDeadline = deadlineRef.current.value;
 
 		// perform checks
-		if(enteredTitle.trim().length === 0 || enteredDesc.trim().length === 0 || enteredDeadline.trim().length === 0) {
+		if (
+			enteredTitle.trim().length === 0 ||
+			enteredDesc.trim().length === 0 ||
+			enteredDeadline.trim().length === 0
+		) {
 			// report error (somehow), prolly by changing the styles
 			return;
 		}
 
-		dispatch(taskActions.addTask({
+		const newTask = {
 			title: enteredTitle,
 			desc: enteredDesc,
-			deadline: enteredDeadline
-		}))
+			deadline: enteredDeadline,
+		};
+
+		if (isEditTask) {
+			dispatch(taskActions.editTask(task));
+		} else {
+			dispatch(taskActions.addTask(newTask));
+		}
+		onHide();
 	}
 
 	return (
@@ -45,7 +67,7 @@ function TaskForm({onHide, task}) {
 							type="text"
 							name="title"
 							placeholder="Insert title here..."
-                            defaultValue={task ? task.title : ''}
+							defaultValue={task ? task.title : ""}
 							required
 						/>
 					</p>
@@ -58,7 +80,7 @@ function TaskForm({onHide, task}) {
 							rows="5"
 							name="desc"
 							placeholder="Insert description here..."
-                            defaultValue={task ? task.desc : ''}
+							defaultValue={task ? task.desc : ""}
 							required
 						/>
 					</p>
@@ -71,14 +93,16 @@ function TaskForm({onHide, task}) {
 							name="deadline"
 							min="2023-05-01"
 							max="2023-12-15"
-                            defaultValue={task ? task.deadline : ''}
+							defaultValue={task ? task.deadline : ""}
 							required
 						/>
 					</p>
 				</div>
 				<div className={classes.actions}>
-                    <button type='button' onClick={onHide}>Cancel</button>
-					<button>{task ? 'Update task' : 'Add task'}</button>
+					<button type="button" onClick={onHide}>
+						Cancel
+					</button>
+					<button>{task ? "Update task" : "Add task"}</button>
 				</div>
 			</form>
 		</Modal>

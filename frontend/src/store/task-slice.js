@@ -58,14 +58,24 @@ const taskSlice = createSlice({
 				state.quantity--;
 			}
 		},
-		// editTask(state, action){
-		// 	const id = action.payload;
-		// 	for (task in state.tasks) {
-		// 		if (task.id === id){
+		editTask(state, action){
+			// action will pass the edited task
+			const editedTask = action.payload;
+			console.log("editedTask.id:");
+			console.log(editedTask.id);
+			
+			// find the matching task stored in the redux context
+			const existingTask = state.tasks.find((task) => task.id === editedTask.id);
 
-		// 		}
-		// 	}
-		// }
+			if(!existingTask) {
+				console.log("Task does not exist wtf?");
+			}
+
+			// update values...?
+			existingTask.title = editedTask.title;
+			existingTask.desc = editedTask.desc;
+			existingTask.deadline = editedTask.deadline;
+		}
 	},
 });
 

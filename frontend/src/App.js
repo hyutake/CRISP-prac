@@ -1,23 +1,18 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
+import { useSelector } from "react-redux";
 import TaskList from "./components/Tasks/TaskList";
 import TaskForm from "./components/Tasks/TaskForm";
 import MainHeader from "./components/Layout/MainHeader";
 //test
 function App() {
-  const [showAddTask, setShowAddTask] = useState(false);
-
-  const showAddTaskModal = () => {
-    setShowAddTask(true);
-  }
-
-  const hideAddTaskModal = () => {
-    setShowAddTask(false);
-  }
+	const showTaskForm = useSelector((state) => state.ui.showTaskFormModal);
 
 	return (
 		<Fragment>
-			<MainHeader onAddTask={showAddTaskModal} />
-			{showAddTask && <TaskForm onHide={hideAddTaskModal} />}
+			<MainHeader />
+			{showTaskForm && (
+				<TaskForm />
+			)}
 			<main>
 				<TaskList />
 			</main>
