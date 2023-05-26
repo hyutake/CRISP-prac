@@ -9,8 +9,8 @@ import { taskActions } from "../../store/task-slice";
 import { uiActions } from "../../store/ui-slice";
 
 function TaskItem(props) {
-	const [showDelete, setShowDelete] = useState(false);
-	const dispatch = useDispatch();
+  const [showDelete, setShowDelete] = useState(false);
+  const dispatch = useDispatch();
 
 	const mouseMoveHandler = (event) => {
 		const targetIsCard = event.target.id === 'card';
@@ -36,9 +36,9 @@ function TaskItem(props) {
 		setShowDelete(false);
 	};
 
-	const deleteTaskHandler = () => {
-		dispatch(taskActions.removeTask(props.id));
-	};
+  const deleteTaskHandler = () => {
+    dispatch(taskActions.removeTask(props.id));
+  };
 
 	const editTaskHandler = () => {
 		const curTask = {
