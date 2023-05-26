@@ -64,7 +64,7 @@
 	top: 0.1rem;
 	right: 0rem;
   }
-  
+   
   .actions .delete-button:hover,
   .actions .delete-button:active {
 	background-color: var(--color-grey-100);
@@ -76,6 +76,7 @@
 	/* Add the styles for the edit button here */
 	background-color: transparent;
 	border: 1px solid white;
+	border-radius: 6px;
 	margin-left: 0.5rem;
 	padding: 0.3rem 1rem;
 	color: white;
