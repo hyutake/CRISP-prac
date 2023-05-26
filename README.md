@@ -36,6 +36,7 @@ You are required to build a simple task manager application using React.js for t
   <ul>
     <li>Fixed bug regarding the delete option appearing when not supposed to :DDDD</li>
   </ul>
+  <li>Local edit task via 'edit' button on middle-right of each task item</li>
   <li>React redux (context) is used to store the task data locally</li>
   <li>Bunch of styles "borrowed" from the udemy projects, should look familiar :></li>
 </ol>
@@ -44,8 +45,7 @@ You are required to build a simple task manager application using React.js for t
 <ul>
   <li>Frontend</li>
   <ol>
-    <li>Add edit functionality to tasks - smth like onClick task -> modal w/ TaskForm but already filled in w/ task's data</li>
-    <li>Add form validation - cannot be empty etc., maybe also change css styles if invalid for visual effect</li>
+    <li>Add form validation - cannot be empty etc. (more or less done w/ the required keyword it feels like), maybe also change css styles if invalid for visual effect</li>
     <li>Add error handling (idk)</li>
   </ol>
   <li>Backend</li>
