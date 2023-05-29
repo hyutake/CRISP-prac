@@ -11,7 +11,7 @@ const uiSlice = createSlice({
             const taskToEdit = action.payload;
             state.showTaskFormModal = true;
             state.task = {
-                id: taskToEdit.id,
+                _id: taskToEdit._id,
                 title: taskToEdit.title,
                 desc: taskToEdit.desc,
                 deadline: taskToEdit.deadline

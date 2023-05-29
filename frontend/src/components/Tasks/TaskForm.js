@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { taskActions } from "../../store/task-slice";
+import { editTaskData, addTaskData } from "../../store/task-actions";
 import { useRef } from "react";
 import Modal from "../UI/Modal";
 import classes from "./TaskForm.module.css";
@@ -7,7 +7,6 @@ import { uiActions } from "../../store/ui-slice";
 
 function TaskForm() {
 	const dispatch = useDispatch();
-	// const isEdit = useSelector((state) => state.ui.isEdit)
 	const task = useSelector((state) => state.ui.task);
 
 	// I forgor whats the best way to perform input validation :/
@@ -16,7 +15,6 @@ function TaskForm() {
 	const deadlineRef = useRef();
 
 	const isEditTask = task ? true : false;
-
 	console.log("isEditTask: " + isEditTask);
 
 	function onHide() {
@@ -25,38 +23,41 @@ function TaskForm() {
 
 	function submitHandler(event) {
 		event.preventDefault();
-	  
+
 		// get the submitted values
 		const enteredTitle = titleRef.current.value;
 		const enteredDesc = descRef.current.value;
 		const enteredDeadline = deadlineRef.current.value;
-	  
+
 		// perform checks
 		if (
-		  enteredTitle.trim().length === 0 ||
-		  enteredDesc.trim().length === 0 ||
-		  enteredDeadline.trim().length === 0
+			enteredTitle.trim().length === 0 ||
+			enteredDesc.trim().length === 0 ||
+			enteredDeadline.trim().length === 0
 		) {
 			// report error (somehow), prolly by changing the styles
 			return;
 		}
-	  
-		const editedTask = {
-		  ...task,
-		  title: enteredTitle,
-		  desc: enteredDesc,
-		  deadline: enteredDeadline
+
+		const enteredTask = {
+			...task,
+			title: enteredTitle,
+			desc: enteredDesc,
+			deadline: enteredDeadline,
 		};
-	  
+
+		console.log(enteredTask);
+
 		if (isEditTask) {
-		  dispatch(taskActions.editTask(editedTask));
+			// backend edit (also calls local edit)
+			dispatch(editTaskData(enteredTask));
 		} else {
-		  dispatch(taskActions.addTask(editedTask));
+			// backend add (also calls local add)
+			dispatch(addTaskData(enteredTask));
 		}
-	  
+
 		onHide();
-	  }
-	  
+	}
 
 	return (
 		<Modal onHide={onHide}>
@@ -105,7 +106,7 @@ function TaskForm() {
 					<button type="button" onClick={onHide}>
 						Cancel
 					</button>
-					<button>{task ? "Update task" : "Add task"}</button>
+					<button>{isEditTask ? "Update task" : "Add task"}</button>
 				</div>
 			</form>
 		</Modal>

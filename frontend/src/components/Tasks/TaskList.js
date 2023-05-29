@@ -20,8 +20,8 @@ function TaskList() {
       <div className={classes["task-list"]}>
         {filteredTasks.map((task) => (
           <TaskItem
-            key={task.id}
-            id={task.id}
+            key={task._id}
+            id={task._id}
             title={task.title}
             desc={task.desc}
             deadline={task.deadline}
