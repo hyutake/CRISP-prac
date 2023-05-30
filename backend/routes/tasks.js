@@ -6,6 +6,9 @@ const router = express.Router();
 
 router.get('/', taskController.getTasks);
 
+// for routing implementation (to get individual tasks)
+router.get('/:id', taskController.getTaskById);
+
 router.post('/add', taskController.postAddTask);
 
 router.post('/edit', taskController.postEditTask);

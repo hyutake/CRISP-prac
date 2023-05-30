@@ -62,12 +62,12 @@ class Task {
 			});
 	}
 
-	// Not used, but maybe useful for filtering / search...?
+	// Used for frontend router implementation
 	static findById(taskId) {
 		const db = getDB();
 		return db
 			.collection("tasks")
-			.findOne({ _id: ObjectId(taskId) })
+			.findOne({ _id: new ObjectId(taskId) })
 			.then((task) => {
 				console.log(task);
 				return task;

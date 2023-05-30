@@ -1,7 +1,6 @@
 const Task = require("../model/task");
 const isValidTask = require('../util/validation').isValidTask;
 
-// To-do: Include data validation here - functions can be defined and exported from a separate file
 exports.getTasks = (req, res, next) => {
 	Task.fetchAll()
 		.then((tasks) => {
@@ -13,6 +12,17 @@ exports.getTasks = (req, res, next) => {
 			console.log(err);
 		});
 };
+
+// For frontend router implementation
+exports.getTaskById = (req, res, next) => {
+	const taskId = req.params.id;
+	Task.findById(taskId).then(task => {
+		console.log("Fetched task by id!");
+		res.json({ message:'Task data fetched successfully!', task: task});
+	}).catch(err => {
+		console.log(err);
+	})
+}
 
 exports.postAddTask = (req, res, next) => {
 	const title = req.body.title;
