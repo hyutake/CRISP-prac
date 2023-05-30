@@ -8,8 +8,6 @@ function TaskRouterForm({ task }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    console.log(task);
-
     function onHide() {
         navigate('..');
     }
