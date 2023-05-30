@@ -6,30 +6,36 @@ import classes from "./TaskList.module.css";
 function TaskList() {
 	const [filterTitle, setFilterTitle] = useState("");
 
-  const tasks = useSelector((state) => state.task.tasks);
+	const tasks = useSelector((state) => state.task.tasks);
 
-  const filterHandler = (event) => {
-	setFilterTitle(event.target.value);
-  };
+	const filterHandler = (event) => {
+		setFilterTitle(event.target.value);
+	};
 
-  const filteredTasks = tasks.filter((task) => task.title.includes(filterTitle));
+	// Exact string matching to filter out tasks - possible improvements incl. match by first letter or by date (e.g. using the month value)
+	const filteredTasks = tasks.filter((task) =>
+		task.title.includes(filterTitle)
+	);
 
-  return (
-    <Fragment>
-      <input className={classes["task-finder"]} onChange={filterHandler}/>
-      <div className={classes["task-list"]}>
-        {filteredTasks.map((task) => (
-          <TaskItem
-            key={task._id}
-            id={task._id}
-            title={task.title}
-            desc={task.desc}
-            deadline={task.deadline}
-          />
-        ))}
-      </div>
-    </Fragment>
-  );
+	return (
+		<Fragment>
+			<input
+				className={classes["task-finder"]}
+				onChange={filterHandler}
+			/>
+			<div className={classes["task-list"]}>
+				{filteredTasks.map((task) => (
+					<TaskItem
+						key={task._id}
+						id={task._id}
+						title={task.title}
+						desc={task.desc}
+						deadline={task.deadline}
+					/>
+				))}
+			</div>
+		</Fragment>
+	);
 }
 
 export default TaskList;

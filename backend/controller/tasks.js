@@ -1,5 +1,7 @@
 const Task = require("../model/task");
+const isValidTask = require('../util/validation').isValidTask;
 
+// To-do: Include data validation here - functions can be defined and exported from a separate file
 exports.getTasks = (req, res, next) => {
 	Task.fetchAll()
 		.then((tasks) => {
@@ -18,6 +20,11 @@ exports.postAddTask = (req, res, next) => {
 	const deadline = req.body.deadline;
 
 	const task = new Task(title, desc, deadline, null);
+	// validation (testing)
+	if(!isValidTask(task)) {
+		console.log("Invalid task to add!");
+		return;
+	}
 	task
 		.save()
 		.then((result) => {
@@ -43,6 +50,11 @@ exports.postEditTask = (req, res, next) => {
 		updatedDeadline,
 		taskId
 	);
+	// validation (testing)
+	if(!isValidTask(updatedTask)) {
+		console.log("Invalid task to edit!");
+		return;
+	}
 	updatedTask
 		.save()
 		.then(() => {

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// to remove later, 'id' modified to '_id' cos I wanna try smth w/ mongodb and it uses '_id'
+// to remove later, 'id' modified to '_id' cos that's how mongodb assigns it as
 const DUMMY_TASKS = [
 	{
 		_id: "t1",

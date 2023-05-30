@@ -62,6 +62,7 @@ class Task {
 			});
 	}
 
+	// Not used, but maybe useful for filtering / search...?
 	static findById(taskId) {
 		const db = getDB();
 		return db
