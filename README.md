@@ -59,7 +59,7 @@ You are required to build a simple task manager application using React.js for t
   <li>Frontend</li>
   <ol>
     <li>Add form validation - honestly already covered simply by using the 'required' keyword for the input tag though</li>
-    <li>Maybe change the logic to utilise react-router-dom instead so that urls can be used to direct to specific 'pages', although technically theres no real need for such a simple app</li>
+    <li>Consider adding a "finished/checked" option (like a green tick or smth) alongside "delete" for tasks - similar logic in terms of handling, but different semantical logic</li>
   </ol>
   <li>Backend</li>
   <ol>
