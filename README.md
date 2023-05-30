@@ -40,23 +40,33 @@ You are required to build a simple task manager application using React.js for t
   <li>Filter option that matches user input to the task title(s)</li>
   <li>React redux (context) is used to store the task data locally</li>
   <li>Bunch of styles "borrowed" from the udemy projects, should look familiar :></li>
+  
+
+  <li>Add task functionality for backend</li>
+  <li>Edit task functionality for backend</li>
+  <li>Delete task functionality for backend</li>
+  <li>Fetch all tasks functionality for backend</li>
+  <li>Added minor data validation for backend</li>
+
+  <li>Set up mongodb driver for backend</li>
+  <li>Set up mongodb server</li>
+
+  <li>Updated frontend code to work w/ backend code</li>
 </ol>
 
 # To-do (non-exhaustive):
 <ul>
   <li>Frontend</li>
   <ol>
-    <li>Add form validation - cannot be empty etc. (more or less done w/ the required keyword it feels like), maybe also change css styles if invalid for visual effect</li>
-    <li>Add error handling (idk)</li>
+    <li>Add form validation - honestly already covered simply by using the 'required' keyword for the input tag though</li>
+    <li>Maybe change the logic to utilise react-router-dom instead so that urls can be used to direct to specific 'pages', although technically theres no real need for such a simple app</li>
   </ol>
   <li>Backend</li>
   <ol>
-    <li>Learn how to integrate node.js w/ mongodb</li>
-    <li>Everything else in "Backend requirements"</li>
+    <li>Done...?</li>
   </ol>
   <li>Database</li>
   <ol>
-    <li>Learn how to integrate node.js w/ mongodb + mongodb in general</li>
-    <li>Everything else in "Database requirements"</li>
+    <li>Done...?</li>
   </ol>
 </ul>
