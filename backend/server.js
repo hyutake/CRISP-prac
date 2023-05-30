@@ -53,7 +53,7 @@ app.put('/tasks/:taskId', async (req, res) => {
 // ... other routes (PUT, DELETE) ...
 
 mongoose
-  .connect('mongodb+srv://Ashioklord:jIIVZ2p8swbJV4lm@mattapi.rgdtxua.mongodb.net/Node-API?retryWrites=true&w=majority', {
+  .connect('mongodb+srv://Ashioklord:<password>@mattapi.rgdtxua.mongodb.net/Node-API?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     //useFindAndModify: false,
