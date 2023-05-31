@@ -1,11 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Task = require('./models/taskModel');
+const cors = require('cors');
 //const {fetchTasks} = require('../frontend/src/store/task-slice');
 //const store = require('../frontend/src/store/index');
 
 const app = express();
-app.use(express.json());
+app.use(cors());
+//app.use(express.json());
 
 app.get('/', (req, res) => {
   res.send('Hello from the Node API!');
