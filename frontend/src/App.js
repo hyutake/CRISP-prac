@@ -22,11 +22,11 @@ const router = createBrowserRouter([
 		{ path: '/completed', element: <CompletedTasksPage />, loader: tasksLoader }
 	] }
 ])
-
+ 
 export const RouterApp = () => {
 	return <RouterProvider router={router} />
 }
-
+ 
 function App() {
 	const showTaskForm = useSelector((state) => state.ui.showTaskFormModal);
 	const dispatch = useDispatch();

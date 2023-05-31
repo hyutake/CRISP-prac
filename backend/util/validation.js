@@ -7,6 +7,10 @@ const isValidDate = (value, minDate = new Date('2023-05-01'), maxDate = new Date
     return date >= minDate && date <= maxDate;
 }
 
+const isValidStatus = (value, validStatuses = ['Completed', 'In progress']) => {
+    return value && validStatuses.includes(value);
+}
+
 exports.isValidTask = (task) => {
-    return isValidText(task.title) && isValidText(task.desc) && isValidDate(task.deadline);
+    return isValidText(task.title) && isValidText(task.desc) && isValidDate(task.deadline) && isValidStatus(task.status);
 }

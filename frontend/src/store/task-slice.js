@@ -38,8 +38,7 @@ const taskSlice = createSlice({
 		addTask(state, action) {
 			// action will pass an entire task object
             const task = action.payload;
-
-			// !!! will need to somehow get '_id' !!!
+			
 			state.tasks.push({
 				_id: task._id,
                 title: task.title,

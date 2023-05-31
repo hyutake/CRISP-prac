@@ -6,7 +6,11 @@ import classes from "./TaskList.module.css";
 function TaskList() {
 	const [filterTitle, setFilterTitle] = useState("");
 
-	const tasks = useSelector((state) => state.task.tasks);
+	const showCompleted = useSelector((state) => state.ui.showCompleted);
+	const tasks = useSelector((state) => state.task.tasks).filter((task) => {
+		if(showCompleted) return task.status === 'Completed';
+		else return task.status !== 'Completed';
+	});
 
 	const filterHandler = (event) => {
 		setFilterTitle(event.target.value);
@@ -23,6 +27,7 @@ function TaskList() {
 				className={classes["task-finder"]}
 				onChange={filterHandler}
 			/>
+			<h2>{showCompleted ? 'Completed Tasks' : 'Incomplete Tasks'}</h2>
 			<div className={classes["task-list"]}>
 				{filteredTasks.map((task) => (
 					<TaskItem
@@ -31,6 +36,7 @@ function TaskList() {
 						title={task.title}
 						desc={task.desc}
 						deadline={task.deadline}
+						status={task.status}
 					/>
 				))}
 			</div>

@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit"
 
 const uiSlice = createSlice({
     name: 'ui',
-    initialState: { showTaskFormModal: false, task: null },
+    initialState: { showTaskFormModal: false, task: null, showCompleted: false },
     reducers: {
         showAddTaskForm(state) {
             state.showTaskFormModal = true;
@@ -20,6 +20,12 @@ const uiSlice = createSlice({
         hideTaskForm(state) {
             state.showTaskFormModal = false;
             state.task = null;
+        },
+        showCompletedTasks(state) {
+            state.showCompleted = true;
+        },
+        showIncompleteTasks(state) {
+            state.showCompleted = false;
         }
     }
 })

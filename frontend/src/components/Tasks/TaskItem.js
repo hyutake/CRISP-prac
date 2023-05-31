@@ -5,12 +5,15 @@ import Card from "../UI/Card";
 import TaskDeadline from "./TaskDeadline";
 
 import { useDispatch } from "react-redux";
-import { deleteTaskData } from "../../store/task-actions";
+import { deleteTaskData, editTaskData } from "../../store/task-actions";
 import { uiActions } from "../../store/ui-slice";
+import { Cancel, Check } from "@mui/icons-material";
 
 function TaskItem(props) {
-	const [showDelete, setShowDelete] = useState(false);
+	const [showTaskUpdateOptions, setShowTaskUpdateOptions] = useState(false);
 	const dispatch = useDispatch();
+
+	const taskIsCompleted = props.status === "Completed";
 
 	const mouseMoveHandler = (event) => {
 		const targetIsCard = event.target.id === "card";
@@ -20,21 +23,24 @@ function TaskItem(props) {
 			const cursorX = event.clientX - componentRect.left;
 			const cursorY = event.clientY - componentRect.top;
 
-			const threshold = 30; // Define the threshold(+/- pixels) for being near the top right corner
+			// Define the threshold(+/- pixels) for being near the top right corner
+			// x & y are defined separately because the revealed 'component' is rectangular (horizontally so)
+			const xThreshold = 60;
+			const yThreshold = 30;
 
 			const cursorAtTopRight =
-				cursorX >= componentRect.width - threshold &&
-				cursorY <= threshold;
+				cursorX >= componentRect.width - xThreshold &&
+				cursorY <= yThreshold;
 			if (cursorAtTopRight) {
-				setShowDelete(true);
+				setShowTaskUpdateOptions(true);
 			} else {
-				setShowDelete(false);
+				setShowTaskUpdateOptions(false);
 			}
 		}
 	};
 
 	const mouseLeaveHandler = () => {
-		setShowDelete(false);
+		setShowTaskUpdateOptions(false);
 	};
 
 	const deleteTaskHandler = () => {
@@ -42,7 +48,24 @@ function TaskItem(props) {
 		const proceed = window.confirm("Delete task?");
 
 		// backend delete (also calls local delete)
-		if(proceed) dispatch(deleteTaskData(props.id)); 
+		if (proceed) dispatch(deleteTaskData(props.id));
+	};
+
+	const completeTaskHandler = () => {
+		// double confirm completion
+		const proceed = window.confirm("Complete task?");
+
+		// update status
+		if (proceed)
+			dispatch(
+				editTaskData({
+					_id: props.id,
+					title: props.title,
+					desc: props.desc,
+					deadline: props.deadline,
+					status: "Completed",
+				})
+			);
 	};
 
 	const editTaskHandler = () => {
@@ -51,9 +74,40 @@ function TaskItem(props) {
 			title: props.title,
 			desc: props.desc,
 			deadline: props.deadline,
+			status: props.status,
 		};
 		dispatch(uiActions.showEditTaskForm(curTask));
 	};
+
+	const buttonDisplay = !taskIsCompleted && (
+		<div className={classes["actions"]}>
+			{showTaskUpdateOptions && (
+				<div>
+					<button
+						type="button"
+						onClick={completeTaskHandler}
+						className={classes["complete-btn"]}
+					>
+						<Check />
+					</button>
+					<button
+						type="button"
+						onClick={deleteTaskHandler}
+						className={classes["delete-btn"]}
+					>
+						<Cancel />
+					</button>
+				</div>
+			)}
+			<button
+				type="button"
+				onClick={editTaskHandler}
+				className={classes["edit-btn"]}
+			>
+				Edit
+			</button>
+		</div>
+	);
 
 	// title, desc, deadline
 	return (
@@ -64,24 +118,7 @@ function TaskItem(props) {
 				<p className={classes["task-item__description"]}>
 					{props.desc}
 				</p>
-				<div className={classes["actions"]}>
-					{showDelete && (
-						<button
-							type="button"
-							onClick={deleteTaskHandler}
-							className={classes["delete-button"]}
-						>
-							X
-						</button>
-					)}
-					<button
-						type="button"
-						onClick={editTaskHandler}
-						className={classes["edit-button"]}
-					>
-						Edit
-					</button>
-				</div>
+				{buttonDisplay}
 			</Card>
 		</li>
 	);

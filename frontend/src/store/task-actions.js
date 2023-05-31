@@ -48,6 +48,7 @@ export const addTaskData = (task) => {
 					title: task.title,
 					desc: task.desc,
 					deadline: task.deadline,
+					status: task.status
 				}),
 			});
 
@@ -71,6 +72,7 @@ export const addTaskData = (task) => {
 				title: task.title,
 				desc: task.desc,
 				deadline: task.deadline,
+				status: task.status
 			}));
 			console.log(resData.message);
 		} catch (err) {

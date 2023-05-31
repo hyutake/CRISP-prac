@@ -35,9 +35,12 @@ You are required to build a simple task manager application using React.js for t
   <li>Local delete task via mouse hover near top-right of each task item</li>
   <ul>
     <li>Fixed bug regarding the delete option appearing when not supposed to :DDDD</li>
+    <li>Used {Cancel} from material UI instead of just 'X' to represent the cross</li>
+    <li>Added alternative option to "Complete" the task as well</li>
   </ul>
   <li>Local edit task via 'edit' button on middle-right of each task item</li>
   <li>Filter option that matches user input to the task title(s)</li>
+  <li>Form validation</li>
   <li>React redux (context) is used to store the task data locally</li>
   <li>Bunch of styles "borrowed" from the udemy projects, should look familiar :></li>
   
@@ -52,17 +55,15 @@ You are required to build a simple task manager application using React.js for t
   <li>Set up mongodb server</li>
 
   <li>Updated frontend code to work w/ backend code</li>
+
+  <li>Added the 'status' attribute to Task objects - provides a way to indicate whether the task is "In progress" or "Completed" (String var)</li>
+  <li>Completed tasks are displayed separately from incomplete tasks - click 'Completed Tasks' vs click 'CRISP' (both are in the header)</li>
 </ol>
 
 # To-do (non-exhaustive):
 <ul>
   <li>Frontend</li>
   <ol>
-    <li>Add form validation - honestly already covered simply by using the 'required' keyword for the input tag though</li>
-    <li>Consider adding a "finished/checked" option (like a green tick or smth) alongside "delete" for tasks - similar logic in terms of handling, but different semantical logic</li>
-    <ul>
-      <li>Implemented for RouterApp</li>
-    </ul>
     <li>Consider adding an 'overdue' checking logic to evaluate whether certain Tasks are overdue or not --> change css or smth</li>
   </ol>
   <li>Backend</li>

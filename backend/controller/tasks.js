@@ -32,7 +32,8 @@ exports.postAddTask = (req, res, next) => {
 	const task = new Task(title, desc, deadline, null, status);
 	// validation (testing)
 	if(!isValidTask(task)) {
-		console.log("Invalid task to add!");
+		console.log("Unable to add invalid Task object!");
+		console.log(task);
 		return;
 	}
 	task
@@ -63,7 +64,8 @@ exports.postEditTask = (req, res, next) => {
 	);
 	// validation (testing)
 	if(!isValidTask(updatedTask)) {
-		console.log("Invalid task to edit!");
+		console.log("Unable to edit invalid Task object!");
+		console.log(updatedTask);
 		return;
 	}
 	updatedTask

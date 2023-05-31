@@ -10,11 +10,20 @@ function MainHeader() {
         dispatch(uiActions.showAddTaskForm());
     }
 
+    const showCompletedTasksHandler = () => {
+        dispatch(uiActions.showCompletedTasks());
+    }
+
+    const showIncompleteTasksHandler = () => {
+        dispatch(uiActions.showIncompleteTasks());
+    }
+
     return (
         <header className={classes.header}>
-            <h1>CRISP</h1>
+            <h1 onClick={showIncompleteTasksHandler}>CRISP</h1>
             <nav>
                 <ul className={classes.list}>
+                    <li><button type='button' onClick={showCompletedTasksHandler}>Completed Tasks</button></li>
                     <li><button type='button' onClick={addTaskHandler}>Add Task</button></li>
                 </ul>
             </nav>
