@@ -7,7 +7,7 @@ import TaskDeadline from "./TaskDeadline";
 import { useDispatch } from "react-redux";
 import { deleteTaskData, editTaskData } from "../../store/task-actions";
 import { uiActions } from "../../store/ui-slice";
-import { Cancel, Check } from "@mui/icons-material";
+import { Cancel, CheckCircle } from "@mui/icons-material";
 
 function TaskItem(props) {
 	const [showTaskUpdateOptions, setShowTaskUpdateOptions] = useState(false);
@@ -88,7 +88,7 @@ function TaskItem(props) {
 						onClick={completeTaskHandler}
 						className={classes["complete-btn"]}
 					>
-						<Check />
+						<CheckCircle />
 					</button>
 					<button
 						type="button"
