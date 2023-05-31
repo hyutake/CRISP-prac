@@ -3,7 +3,7 @@ import classes from "./TaskList.module.css";
 import TaskRouterItem from "./TaskRouterItem";
 import { Link } from "react-router-dom";
 
-function TaskRouterList({tasks}) {
+function TaskRouterList({tasks, label}) {
 	const [filterTitle, setFilterTitle] = useState("");
 
 	const filterHandler = (event) => {
@@ -21,6 +21,7 @@ function TaskRouterList({tasks}) {
 				className={classes["task-finder"]}
 				onChange={filterHandler}
 			/> 
+			<h2>{label}</h2>
 			<div className={classes["task-list"]}>
 				{filteredTasks.map((task) => (
 					<Link key={task._id} to={`/${task._id}`}>

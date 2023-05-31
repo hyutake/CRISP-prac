@@ -9,7 +9,7 @@ const CompletedTasksPage = () => {
             <Await resolve={tasks}>
                 {(loadedTasks) => {
                     const finishedTasks = loadedTasks.filter((task) => task.status === 'Completed');
-                    return <TaskRouterList tasks={finishedTasks} />
+                    return <TaskRouterList tasks={finishedTasks} label='Completed Tasks' />
                 }}
             </Await>
         </Suspense>
