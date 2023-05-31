@@ -1,5 +1,5 @@
-# CRISP-prac (need to run npm install btw)
-Task: Simple Task Manager Application
+# CRISP-prac
+Task: Simple Task Manager Application (need to run npm install in both /backend and /frontend btw)
 
 ## Description:
 You are required to build a simple task manager application using React.js for the frontend, Node.js for the backend, and MongoDB for the database. The application should allow users to create, view, update, and delete tasks.
@@ -66,12 +66,8 @@ You are required to build a simple task manager application using React.js for t
   <ol>
     <li>Consider adding an 'overdue' checking logic to evaluate whether certain Tasks are overdue or not --> change css or smth</li>
   </ol>
-  <li>Backend</li>
+  <li>Backend & Database</li>
   <ol>
-    <li>Done...?</li>
-  </ol>
-  <li>Database</li>
-  <ol>
-    <li>Done...?</li>
+    <li>Consider using mongoose instead of mongodb driver (or just implement both xd)</li>
   </ol>
 </ul>
