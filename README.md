@@ -43,6 +43,7 @@ You are required to build a simple task manager application using React.js for t
   <li>Form validation</li>
   <li>React redux (context) is used to store the task data locally</li>
   <li>Bunch of styles "borrowed" from the udemy projects, should look familiar :></li>
+  <li>React router integration - coded SEPARATELY from the original non-router code (switch the commented and uncommented root.render() in /frontend/index.js to switch between the 2)</li>
   
 
   <li>Add task functionality for backend</li>
@@ -56,11 +57,11 @@ You are required to build a simple task manager application using React.js for t
 
   <li>Updated frontend code to work w/ backend code</li>
 
-  <li>Added the 'status' attribute to Task objects - provides a way to indicate whether the task is "In progress" or "Completed" (String var)</li>
+  <li>Added the 'status' attribute (String) to Task objects - provides a way to indicate whether the task is "In progress" or "Completed"</li>
   <li>Completed tasks are displayed separately from incomplete tasks - click 'Completed Tasks' vs click 'CRISP' (both are in the header)</li>
 </ol>
 
-# To-do (non-exhaustive):
+# To-do:
 <ul>
   <li>Frontend</li>
   <ol>
