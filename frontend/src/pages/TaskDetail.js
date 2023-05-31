@@ -19,7 +19,6 @@ const TaskDetailPage = () => {
 export default TaskDetailPage;
 
 async function loadTask(id) {
-	// backend not implemented yet
 	const response = await fetch('http://localhost:8080/tasks/' + id);
 
 	if(!response.ok) {

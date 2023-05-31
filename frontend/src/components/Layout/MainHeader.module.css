@@ -6,23 +6,27 @@
 	align-items: center;
 	justify-content: space-between;
 	background-color: #0d0d0d;
-  }
-  
-  .header h1 {
+}
+
+.header a {
+	text-decoration: none;
+}
+
+.header h1 {
 	color: white;
-  }
-  
-  .header ul {
+}
+
+.header ul {
 	list-style: none;
 	margin: 0;
 	padding: 0;
-  }
+}
 
-  .list {
+.list {
 	display: flex;
-  }
+}
 
-  .list button {
+.list button {
 	background-color: transparent;
 	border-radius: 6px;
 	border: 1px solid white;
@@ -30,10 +34,10 @@
 	padding: 0.3rem 1rem;
 	color: white;
 	cursor: pointer;
-  }
+}
 
-  .list button:hover,
-  .list button:active {
+.list button:hover,
+.list button:active {
 	background-color: white;
 	color: black;
-  }
+}

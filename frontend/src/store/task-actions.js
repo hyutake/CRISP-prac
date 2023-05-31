@@ -92,6 +92,7 @@ export const editTaskData = (task) => {
 					title: task.title,
 					desc: task.desc,
 					deadline: task.deadline,
+					status: task.status
 				}),
 			});
 

@@ -9,7 +9,7 @@ function TaskRouterItem(props) {
 		<li>
 			<Card className={classes["task-item"]}>
 				<TaskDeadline date={props.deadline} />
-				<h2>{props.title}</h2>
+				<h2>{props.title}</h2> 
 				<p className={classes["task-item__description"]}>
 					{props.desc}
 				</p>

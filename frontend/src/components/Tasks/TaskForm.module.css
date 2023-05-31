@@ -1,7 +1,7 @@
 .form {
 	margin: 0.5rem 0;
 	padding: 0 10%;
-	color:black;
+	color: black;
 }
 
 .form label {
@@ -43,6 +43,7 @@
 	display: flex;
 	gap: 1rem;
 	justify-content: center;
+	align-items: center;
 }
 
 .actions button {
@@ -53,19 +54,43 @@
 	background-color: var(--color-gray-300);
 	color: var(--color-gray-800);
 	border: none;
-}
-
-.actions button[type="button"] {
-	background-color: transparent;
-	border: 1px solid #ccc;
-	color: black;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
 }
 
 .actions button:hover {
 	background-color: var(--color-primary-300);
 }
 
-.actions button[type="button"]:hover {
-	background-color: var(--color-gray-800);
-	color: var(--color-primary-400);
+.actions button[name="delete"] {
+	background-color: lightcoral;
+	border: 1px solid #ccc;
+	color: black;
+}
+
+.actions button[name="delete"]:hover {
+	background-color: darkred;
+	color: white;
+}
+
+.actions button[name="complete"] {
+	background-color: aquamarine;
+	border: 1px solid #ccc;
+	color: black;
+}
+
+.actions button[name="complete"]:hover {
+	background-color: green;
+	color: white;
+}
+
+.cancel-icon {
+	margin-left: 0.2rem;
+	vertical-align: middle;
+}
+
+.check-icon {
+	margin-left: 0.2rem;
+	vertical-align: middle;
 }

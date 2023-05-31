@@ -8,7 +8,8 @@ const TasksPage = () => {
         <Suspense fallback={<p>Loading...</p>}>
             <Await resolve={tasks}>
                 {(loadedTasks) => {
-                    return <TaskRouterList tasks={loadedTasks} />
+                    const unfinishedTasks = loadedTasks.filter((task => task.status !== 'Completed'))
+                    return <TaskRouterList tasks={unfinishedTasks} />
                 }}
             </Await>
         </Suspense>

@@ -5,7 +5,6 @@ exports.getTasks = (req, res, next) => {
 	Task.fetchAll()
 		.then((tasks) => {
 			console.log("Fetched all tasks!");
-			// should probably call some res (response) method... trying out .json cos idk
 			res.json({ message: "Task data fetched successfully!",tasks: tasks });
 		})
 		.catch((err) => {
@@ -28,8 +27,9 @@ exports.postAddTask = (req, res, next) => {
 	const title = req.body.title;
 	const desc = req.body.desc;
 	const deadline = req.body.deadline;
+	const status = req.body.status;
 
-	const task = new Task(title, desc, deadline, null);
+	const task = new Task(title, desc, deadline, null, status);
 	// validation (testing)
 	if(!isValidTask(task)) {
 		console.log("Invalid task to add!");
@@ -40,7 +40,6 @@ exports.postAddTask = (req, res, next) => {
 		.then((result) => {
 			console.log("Added task!");
 			const newTaskId = result.insertedId;
-			// should probably call some res (response) method... trying out .json cos idk
 			res.status(201).json({ message: "Task data added successfully!", _id: newTaskId });
 		})
 		.catch((err) => {
@@ -53,12 +52,14 @@ exports.postEditTask = (req, res, next) => {
 	const updatedTitle = req.body.title;
 	const updatedDesc = req.body.desc;
 	const updatedDeadline = req.body.deadline;
+	const updatedStatus = req.body.status;
 
 	const updatedTask = new Task(
 		updatedTitle,
 		updatedDesc,
 		updatedDeadline,
-		taskId
+		taskId,
+		updatedStatus
 	);
 	// validation (testing)
 	if(!isValidTask(updatedTask)) {
@@ -69,7 +70,6 @@ exports.postEditTask = (req, res, next) => {
 		.save()
 		.then(() => {
 			console.log("Updated task!");
-			// should probably call some res (response) method... trying out .json cos idk
 			res.json({ message: "Task updated successfully!", task: updatedTask });
 		})
 		.catch((err) => {
@@ -82,7 +82,6 @@ exports.postDeleteTask = (req, res, next) => {
 	Task.deleteById(taskId)
 		.then(() => {
 			console.log("Deleted task!");
-			// should probably call some res (response) method... trying out .json cos idk
 			res.json({ message: "Task data deleted successfully!" });
 		})
 		.catch((err) => {

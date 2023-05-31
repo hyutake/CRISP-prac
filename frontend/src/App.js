@@ -12,12 +12,14 @@ import TasksPage, {loader as tasksLoader} from './pages/Tasks';
 import TaskDetailPage, { loader as taskDetailLoader } from "./pages/TaskDetail";
 import NewTaskPage from "./pages/NewTask";
 import {action as manipulateTaskAction} from './components/Tasks/TaskRouterForm';
+import CompletedTasksPage from "./pages/CompletedTasks";
 
 const router = createBrowserRouter([
 	{ path: '/', element: <RootLayout />, children: [
-		{ index: true, element: <TasksPage />, loader: tasksLoader },
+		{ index: true, id: 'tasks', element: <TasksPage />, loader: tasksLoader },
 		{ path: '/:taskId', element: <TaskDetailPage />, loader: taskDetailLoader, action: manipulateTaskAction },
-		{ path: '/new', element: <NewTaskPage />, action: manipulateTaskAction }
+		{ path: '/new', element: <NewTaskPage />, action: manipulateTaskAction },
+		{ path: '/completed', element: <CompletedTasksPage />, loader: tasksLoader }
 	] }
 ])
 

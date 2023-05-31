@@ -60,6 +60,10 @@ You are required to build a simple task manager application using React.js for t
   <ol>
     <li>Add form validation - honestly already covered simply by using the 'required' keyword for the input tag though</li>
     <li>Consider adding a "finished/checked" option (like a green tick or smth) alongside "delete" for tasks - similar logic in terms of handling, but different semantical logic</li>
+    <ul>
+      <li>Implemented for RouterApp</li>
+    </ul>
+    <li>Consider adding an 'overdue' checking logic to evaluate whether certain Tasks are overdue or not --> change css or smth</li>
   </ol>
   <li>Backend</li>
   <ol>
