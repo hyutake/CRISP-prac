@@ -7,7 +7,7 @@ const cors = require('cors');
 
 const app = express();
 app.use(cors());
-//app.use(express.json());
+app.use(express.json());
 
 app.get('/', (req, res) => {
   res.send('Hello from the Node API!');
@@ -24,8 +24,12 @@ app.get('/tasks', async (req, res) => {
 
 app.post('/tasks', async (req, res) => {
   try {
+    //console.log(req.body);
     const task = new Task(req.body); // Create a new instance of the Task model with the request body
-    await task.save(); // Save the task to the database
+    //console.log("From server.js:");
+    await task.save()
+    //console.log("Task: " + task);
+    //console.log
     res.status(200).json(task);
   } catch (error) {
     console.log(error.message);
@@ -51,6 +55,23 @@ app.put('/tasks/:taskId', async (req, res) => {
     }
   });
   
+  app.delete('/tasks/:taskId', async (req, res) => {
+    try {
+      const taskId = req.params.taskId;
+  
+      // Find the task by ID and remove it from the database
+      const deletedTask = await Task.findByIdAndRemove(taskId);
+  
+      if (!deletedTask) {
+        return res.status(404).json({ message: 'Task not found' });
+      }
+  
+      res.status(200).json({ message: 'Task deleted successfully' });
+    } catch (error) {
+      console.log(error.message);
+      res.status(500).json({ message: error.message });
+    }
+  });
 
 // ... other routes (PUT, DELETE) ...
 

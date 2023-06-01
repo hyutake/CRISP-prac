@@ -44,11 +44,12 @@ function TaskForm() {
 		const editedTask = {
 		  ...task,
 		  title: enteredTitle,
-		  desc: enteredDesc,
+		  description: enteredDesc,
 		  deadline: enteredDeadline
 		};
 	  
 		if (isEditTask) {
+			console.log("in taskform, edited task:", editedTask);
 		  dispatch(taskActions.editTask(editedTask));
 		} else {
 		  dispatch(taskActions.addTask(editedTask));

@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 
 const taskSchema = mongoose.Schema(
     {
+        id:{
+            type: String,
+            required: false,
+        },
         title: {
             type: String,
             required: [true, "Please enter a task title"]
@@ -18,9 +22,6 @@ const taskSchema = mongoose.Schema(
             type: Boolean,
             default: false,
         }
-    },
-    {
-        timestamps: true
     }
 );
 
