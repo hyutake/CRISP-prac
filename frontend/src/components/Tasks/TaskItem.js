@@ -113,7 +113,7 @@ function TaskItem(props) {
 	return (
 		<li onMouseMove={mouseMoveHandler} onMouseLeave={mouseLeaveHandler}>
 			<Card className={classes["task-item"]}>
-				<TaskDeadline date={props.deadline} />
+				<TaskDeadline status={props.status} deadline={props.deadline} />
 				<h2>{props.title}</h2>
 				<p className={classes["task-item__description"]}>
 					{props.desc}

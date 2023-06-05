@@ -9,10 +9,12 @@ function TaskRouterForm({ task }) {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-	const taskIsCompleted = task.status === 'Completed';
+	const taskIsCompleted = task && task.status === 'Completed';
 
 	function onHide() {
-		// temp. solution - feels bad tho
+		// temp. solution - because I'm reusing this form to display tasks in both the 'completed' and 'incomplete' list,
+		// the routing logic to display this form has to be "the same", i.e. the same url format should link to the displaying of the form
+		// BUT, the "origin", i.e. where the user was BEFORE, is different ('/' vs '/completed'), so this is the only way I know how to do this
 		if(taskIsCompleted) {
 			navigate('/completed');
 		} else navigate("..");

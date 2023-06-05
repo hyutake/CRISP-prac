@@ -9,7 +9,7 @@ function TaskRouterList({tasks, label}) {
 	const filterHandler = (event) => {
 		setFilterTitle(event.target.value);
 	};
- 
+  
 	// Exact string matching to filter out tasks - possible improvements incl. match by first letter or by date (e.g. using the month value)
 	const filteredTasks = tasks.filter((task) =>
 		task.title.includes(filterTitle)
@@ -30,6 +30,7 @@ function TaskRouterList({tasks, label}) {
 							title={task.title}
 							desc={task.desc}
 							deadline={task.deadline}
+							status={task.status}
 						/>
 					</Link>
 				))}
