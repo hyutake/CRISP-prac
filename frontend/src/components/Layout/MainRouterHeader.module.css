@@ -27,8 +27,8 @@
 	display: flex;
 }
 
-/* For non-router impl. */
-.list button {
+/* For router impl. */
+.list a {
 	background-color: transparent;
 	border-radius: 6px;
 	border: 1px solid white;
@@ -38,9 +38,9 @@
 	cursor: pointer;
 }
 
-.list button:hover,
-.list button:active,
-.list button.active {
+.list a:hover,
+.list a:active,
+.list a.active {
 	background-color: white;
 	color: black;
 	border-radius: 6px;

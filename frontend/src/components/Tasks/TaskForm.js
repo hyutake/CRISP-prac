@@ -15,7 +15,7 @@ function TaskForm() {
 	const deadlineRef = useRef();
 
 	const isEditTask = task ? true : false;
-	console.log("isEditTask: " + isEditTask);
+	// console.log("isEditTask: " + isEditTask);
 
 	function onHide() {
 		dispatch(uiActions.hideTaskForm());
