@@ -3,14 +3,17 @@ import classes from "./TaskList.module.css";
 import TaskRouterItem from "./TaskRouterItem";
 import { Link } from "react-router-dom";
 
-function TaskRouterList({tasks, label}) {
+function TaskRouterList(props) {
 	const [filterTitle, setFilterTitle] = useState("");
+
+	// Sort tasks by deadline
+	const tasks = props.tasks.sort((a, b) => new Date(a.deadline) - new Date(b.deadline));
 
 	const filterHandler = (event) => {
 		setFilterTitle(event.target.value);
 	};
   
-	// Exact string matching to filter out tasks - possible improvements incl. match by first letter or by date (e.g. using the month value)
+	// Exact string matching to filter out tasks
 	const filteredTasks = tasks.filter((task) =>
 		task.title.includes(filterTitle)
 	);
@@ -21,7 +24,7 @@ function TaskRouterList({tasks, label}) {
 				className={classes["task-finder"]}
 				onChange={filterHandler}
 			/> 
-			<h2>{label}</h2>
+			<h2>{props.label}</h2>
 			<div className={classes["task-list"]}>
 				{filteredTasks.map((task) => (
 					<Link key={task._id} to={`/${task._id}`}>
@@ -31,6 +34,7 @@ function TaskRouterList({tasks, label}) {
 							desc={task.desc}
 							deadline={task.deadline}
 							status={task.status}
+							completedDate={task.completedDate}
 						/>
 					</Link>
 				))}

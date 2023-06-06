@@ -1,20 +1,9 @@
-import { useState } from "react";
 import classes from "./TaskDeadline.module.css";
 import { Tooltip } from "@mui/material";
 
-function TaskDeadline(props) {
-	const [showDeadline, setShowDeadline] = useState(true);
-
-	function toggleDateHandler(event) {
-		if (props.completedDate) {
-			setShowDeadline((prevState) => {
-				return !prevState;
-			});
-		}
-	}
-
+function TaskRouterDeadline(props) {
 	const today = new Date();
-	const date = new Date(showDeadline ? props.deadline : props.completedDate);
+	const date = new Date(props.deadline);
 
 	function convertMilliToDays(ms) {
 		// ms -> sec -> min -> hour -> day
@@ -24,12 +13,8 @@ function TaskDeadline(props) {
 	// customising color + tooltip based on deadline
 	const isOverdueBy = convertMilliToDays(date - today);
 	// default status and statusToolTip are the set values for Completed Tasks
-	let status = showDeadline
-		? classes["task-date__overdue"]
-		: classes["task-date__todo"]; // reusing the same color scheme here
-	let statusToolTip = showDeadline
-		? "Click to toggle and view date of completion!"
-		: "Click to toggle and view last deadline!";
+	let status = '';
+	let statusToolTip = 'Completed!';
 	if (props.status !== "Completed") {
 		status = classes["task-date__todo"];
 		statusToolTip = `Task due in ${isOverdueBy} day(s)!`;
@@ -49,7 +34,7 @@ function TaskDeadline(props) {
 	const year = date.getFullYear();
 
 	return (
-		<Tooltip title={statusToolTip} onClick={toggleDateHandler}>
+		<Tooltip title={statusToolTip}>
 			<div className={`${classes["task-date"]} ${status}`}>
 				<div className={classes["task-date__month"]}>{month}</div>
 				<div className={classes["task-date__day"]}>{day}</div>
@@ -59,4 +44,4 @@ function TaskDeadline(props) {
 	);
 }
 
-export default TaskDeadline;
+export default TaskRouterDeadline;

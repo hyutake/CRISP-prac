@@ -1,15 +1,15 @@
 import classes from "./TaskItem.module.css";
 import Card from "../UI/Card";
-import TaskDeadline from "./TaskDeadline";
+import TaskRouterDeadline from "./TaskRouterDeadline";
 
 
 function TaskRouterItem(props) {
-	// title, desc, deadline
+	// title, desc, deadline 
 	return (
 		<li>
 			<Card className={classes["task-item"]}>
 				<div>
-					<TaskDeadline status={props.status} deadline={props.deadline} />
+					<TaskRouterDeadline status={props.status} deadline={props.deadline} completedDate={props.completedDate} />
 				</div>
 				<h2>{props.title}</h2>
 				<p className={classes["task-item__description"]}>

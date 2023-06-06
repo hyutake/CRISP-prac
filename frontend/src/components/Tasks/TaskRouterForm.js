@@ -4,6 +4,7 @@ import Modal from "../UI/Modal";
 import classes from "./TaskForm.module.css";
 import { Form, json, redirect, useNavigate } from "react-router-dom";
 import { FaTimes, FaCheck } from "react-icons/fa";
+import { SERVER_PORT } from "../../util/config";
 
 function TaskRouterForm({ task }) {
 	const dispatch = useDispatch();
@@ -31,6 +32,9 @@ function TaskRouterForm({ task }) {
 	function completeTaskHandler() {
 		const proceed = window.confirm("Resolve task?");
 
+		const today = new Date();
+		const formattedToday = today.toISOString().split('T')[0];
+
 		if (proceed)
 			dispatch(
 				editTaskData({
@@ -39,6 +43,7 @@ function TaskRouterForm({ task }) {
 					deadline: task.deadline,
 					_id: task._id,
 					status: "Completed",
+					completedDate: formattedToday,
 				})
 			);
 
@@ -112,6 +117,19 @@ function TaskRouterForm({ task }) {
 							required
 						/>
 					</p>
+					{task.completedDate && <p>
+						<label htmlFor="completedDate">Date of Completion</label>
+						<input
+							id="completedDate"
+							type="date"
+							name="completedDate"
+							min="2023-05-01"
+							max="2023-12-15"
+							defaultValue={task.completedDate}
+							readOnly
+							required
+						/>
+					</p>}
 				</div>
 				{buttonDisplay}
 			</Form>
@@ -132,6 +150,7 @@ export const action = async ({ request, params }) => {
 		deadline: formData.get("deadline"),
 		taskId: taskId,
 		status: "In progress",
+		completedDate: null
 	};
 
 	// perform checks
@@ -140,20 +159,20 @@ export const action = async ({ request, params }) => {
 		task.desc.trim().length === 0 ||
 		task.deadline.trim().length === 0
 	) {
-		// report error (somehow), prolly by changing the styles
+		// report error (somehow), prolly by changing the styles?
 		return;
 	}
-	// debugging
-	// console.log(task);
 
+	// "configure" the route and send request
 	const route = taskId ? "edit" : "add";
-	let url = "http://localhost:8080/tasks/" + route;
+	let url = `http://localhost:${SERVER_PORT}/tasks/${route}`;
 	const response = await fetch(url, {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
 		body: JSON.stringify(task),
 	});
 
+	// check response
 	if (!response.ok) {
 		throw json({ message: "Could not send form data" }, { status: 500 });
 	}
