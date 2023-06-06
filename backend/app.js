@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const taskRoutes = require('./routes/tasks');
 const mongoConnect = require('./util/database').mongoConnect;
+const config = require('./util/config');
 
 // configuring backend
 const app = express();
@@ -18,6 +19,6 @@ app.use((req, res, next) => {
 app.use('/tasks', taskRoutes);
 
 mongoConnect(() => {
-    console.log('Listening on port 8080');
-    app.listen(8080);
+    console.log('Listening on port ' + config.SERVER_PORT);
+    app.listen(config.SERVER_PORT);
 })

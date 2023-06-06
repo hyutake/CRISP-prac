@@ -1,14 +1,12 @@
 const mongodb = require("mongodb");
 const MongoClient = mongodb.MongoClient;
+const config = require('./config');
 
 let _db;
 
-const username = "crisp-user";
-const password = "coqLDaVngHnfRtKG";
-
 const mongoConnect = (callback) => {
 	MongoClient.connect(
-		`mongodb+srv://${username}:${password}@cluster0.k09vqz6.mongodb.net/tasks?retryWrites=true&w=majority`
+		config.MONGO_URL
 	)
 		.then((client) => {
 			console.log("Connected!");
