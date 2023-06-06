@@ -60,6 +60,7 @@ You are required to build a simple task manager application using React.js for t
   <li>Added the 'status' attribute (String) to Task objects - provides a way to indicate whether the task is "In progress" or "Completed"</li>
   <li>Completed tasks are displayed separately from incomplete tasks - click 'Completed Tasks' vs click 'CRISP' (both are in the header)</li>
   <li>Added deadline checking logic to TaskDeadline component</li>
+  <li>Added completedDate attribute and supporting logic to Task Objects - Completed Tasks will now also show the date of completion</li>
 </ol>
 
 # To-do:
