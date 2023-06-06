@@ -42,7 +42,7 @@ You are required to build a simple task manager application using React.js for t
   <li>Filter option that matches user input to the task title(s)</li>
   <li>Form validation</li>
   <li>React redux (context) is used to store the task data locally</li>
-  <li>ALL styles are taken from the hands-on udemy projects, w/ minor modifications that took always too long to get it right :/</li>
+  <li>ALL styles are taken from the hands-on udemy projects, w/ minor modifications that always took too long to get it right :/</li>
   <li>React router integration - coded <strong>SEPARATELY</strong> from the original non-router code (switch the commented and uncommented root.render() in /frontend/index.js to switch between the 2)</li>
   
 
@@ -57,7 +57,7 @@ You are required to build a simple task manager application using React.js for t
 
   <li>Updated frontend code to work w/ backend code</li>
 
-  <li>Added the 'status' attribute (String) to Task objects - provides a way to indicate whether the task is "In progress" or "Completed"</li>
+  <li>Added the 'status' attribute (String) to Task objects - provides a way to indicate whether the task is "In progress" or "Completed". [Update]: Became a bit redundant with the tracking of completedDate, but it is still viable IF there were to be >2 distinct task statuses to track (e.g. delayed, KIV) or can also "repurpose" for priority setting</li>
   <li>Completed tasks are displayed separately from incomplete tasks - click 'Completed Tasks' vs click 'CRISP' (both are in the header)</li>
   <li>Added deadline checking logic to TaskDeadline component</li>
   <li>Added completedDate attribute and supporting logic to Task Objects - Completed Tasks will now also show the date of completion</li>
