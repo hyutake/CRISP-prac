@@ -6,9 +6,12 @@ function TaskDeadline(props) {
 	const [showDeadline, setShowDeadline] = useState(true);
 
 	function toggleDateHandler() {
-		setShowDeadline((prevState) => {
-			return !prevState;
-		})
+		if (props.completedDate) {
+			setShowDeadline((prevState) => {
+				return !prevState;
+			});
+		}
+		return;
 	}
 
 	const today = new Date();
@@ -22,9 +25,13 @@ function TaskDeadline(props) {
 	// customising color + tooltip based on deadline
 	const isOverdueBy = convertMilliToDays(date - today);
 	// default status and statusToolTip are the set values for Completed Tasks
-	let status = showDeadline ? classes['task-date__overdue'] : classes['task-date__todo'];	// reusing the same color scheme here
-	let statusToolTip = showDeadline ? 'Click to toggle and view date of completion!' : 'Click to toggle and view last deadline!';
-	if(props.status !== 'Completed') {
+	let status = showDeadline
+		? classes["task-date__overdue"]
+		: classes["task-date__todo"]; // reusing the same color scheme here
+	let statusToolTip = showDeadline
+		? "Click to toggle and view date of completion!"
+		: "Click to toggle and view last deadline!";
+	if (props.status !== "Completed") {
 		status = classes["task-date__todo"];
 		statusToolTip = `Task due in ${isOverdueBy} day(s)!`;
 		if (isOverdueBy === 0) {
@@ -32,7 +39,9 @@ function TaskDeadline(props) {
 			statusToolTip = `Task due today!!`;
 		} else if (isOverdueBy < 0) {
 			status = classes["task-date__overdue"];
-			statusToolTip = `Task overdue by ${Math.abs(isOverdueBy)} day(s)!!!`;
+			statusToolTip = `Task overdue by ${Math.abs(
+				isOverdueBy
+			)} day(s)!!!`;
 		}
 	}
 
