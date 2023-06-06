@@ -3,6 +3,7 @@ import { taskActions } from '../../store/task-slice';
 import { useRef } from 'react';
 import Modal from '../UI/Modal';
 import classes from "./TaskForm.module.css";
+import { addTask } from '../../store/task-actions';
 
 function TaskForm({onHide, task}) {
 	const dispatch = useDispatch();
@@ -26,11 +27,13 @@ function TaskForm({onHide, task}) {
 			return;
 		}
 
-		dispatch(taskActions.addTask({
+		dispatch(addTask({
 			title: enteredTitle,
-			desc: enteredDesc,
+			description: enteredDesc,
 			deadline: enteredDeadline
-		}))
+		}));
+
+		console.log("task dispatched")
 	}
 
 	return (

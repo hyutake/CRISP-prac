@@ -7,6 +7,7 @@ function TaskList() {
 	const [filterTitle, setFilterTitle] = useState("");
 
   const tasks = useSelector((state) => state.task.tasks);
+  console.log(tasks);
 
   const filterHandler = (event) => {
 	setFilterTitle(event.target.value);
@@ -20,8 +21,8 @@ function TaskList() {
       <div className={classes["task-list"]}>
         {filteredTasks.map((task) => (
           <TaskItem
-            key={task.id}
-            id={task.id}
+            key={task._id}
+            id={task._id}
             title={task.title}
             desc={task.desc}
             deadline={task.deadline}

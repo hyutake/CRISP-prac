@@ -6,6 +6,7 @@ import TaskDeadline from "./TaskDeadline";
 
 import { useDispatch } from "react-redux";
 import { taskActions } from "../../store/task-slice";
+import { deleteTask } from "../../store/task-actions";
 
 function TaskItem(props) {
 	const [showDelete, setShowDelete] = useState(false);
@@ -36,7 +37,8 @@ function TaskItem(props) {
 	};
 
 	const deleteTaskHandler = () => {
-		dispatch(taskActions.removeTask(props.id));
+		const proceed = window.confirm("Delete task?");
+		if(proceed) dispatch(deleteTask(props.id));
 	};
 
 	const editTaskHandler = () => {
