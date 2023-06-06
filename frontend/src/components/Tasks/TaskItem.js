@@ -23,7 +23,7 @@ function TaskItem(props) {
 			const cursorX = event.clientX - componentRect.left;
 			const cursorY = event.clientY - componentRect.top;
 
-			// Define the threshold(+/- pixels) for being near the top right corner
+			// Define the threshold(+/- pixels) for being near the top right corner 
 			// x & y are defined separately because the revealed 'component' is rectangular (horizontally so)
 			const xThreshold = 60;
 			const yThreshold = 30;
@@ -54,8 +54,14 @@ function TaskItem(props) {
 	const completeTaskHandler = () => {
 		// double confirm completion
 		const proceed = window.confirm("Complete task?");
+		
+		// get "today's" date
+		const today = new Date();
+		const formattedToday = today.toISOString().split('T')[0];
+		// console.log(formattedToday);
 
 		// update status
+		// new idea: for completion of tasks, the date of completion should probably also be saved
 		if (proceed)
 			dispatch(
 				editTaskData({
@@ -64,17 +70,18 @@ function TaskItem(props) {
 					desc: props.desc,
 					deadline: props.deadline,
 					status: "Completed",
+					completedDate: formattedToday
 				})
 			);
 	};
 
 	const editTaskHandler = () => {
+		// 'status' and 'completedDate' have preset default values in TaskForm.js, because this function should only be allowed to trigger with those set as such
 		const curTask = {
 			_id: props.id,
 			title: props.title,
 			desc: props.desc,
 			deadline: props.deadline,
-			status: props.status,
 		};
 		dispatch(uiActions.showEditTaskForm(curTask));
 	};
@@ -113,7 +120,7 @@ function TaskItem(props) {
 	return (
 		<li onMouseMove={mouseMoveHandler} onMouseLeave={mouseLeaveHandler}>
 			<Card className={classes["task-item"]}>
-				<TaskDeadline status={props.status} deadline={props.deadline} />
+				<TaskDeadline status={props.status} deadline={props.deadline} completedDate={props.completedDate} />
 				<h2>{props.title}</h2>
 				<p className={classes["task-item__description"]}>
 					{props.desc}

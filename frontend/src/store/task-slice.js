@@ -1,31 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// to remove later, 'id' modified to '_id' cos that's how mongodb assigns it as
-// const DUMMY_TASKS = [
-// 	{
-// 		_id: "t1",
-// 		title: "Laundry",
-// 		desc: "Do laundry",
-// 		deadline: "2023-05-27",
-// 		status: 'In progress'
-// 	},
-// 	{
-// 		_id: "t2",
-// 		title: "Workout",
-// 		desc: "Go to the gym",
-// 		deadline: "2023-05-29",
-// 		status: 'In progress'
-// 	},
-// 	{
-// 		_id: "t3",
-// 		title: "Lorem Ipsum",
-// 		desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tempus eros fermentum arcu eleifend porttitor. Ut accumsan dui at maximus rutrum. Quisque tristique maximus pretium. Ut tristique a diam ut luctus. Donec auctor, ante a dictum hendrerit, enim massa pretium massa, vel sagittis diam ligula sed nibh. Donec efficitur turpis sed dolor imperdiet blandit. Vivamus imperdiet elit et felis faucibus mollis. Suspendisse mollis dolor ornare lacus faucibus semper. Proin tempor enim nisl. Curabitur elementum, justo sit amet suscipit tincidunt, sapien eros fringilla sapien, vitae pharetra nunc ipsum eu odio. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla pulvinar venenatis erat, nec vulputate tellus.",
-// 		deadline: "2023-06-22",
-// 		status: 'In progress'
-// 	},
-// ]
 /* 
-    tasks: array of task objects -> { title:___, desc:___, deadline:___ }, 'title' & 'desc' are Strings, 'deadline' is a Date object
+    tasks: array of task objects -> { _id:___, title:___, desc:___, deadline:___, status:___, completedDate:___ }, 
+	'title' & 'desc' are Strings
+	'deadline' & 'completedDate' are Date objects
+	'status' is also a String, but only so to allow for >2 statuses in the future if needed (not sure if enums are a thing in js)
+	'_id' is the auto-generated identifier created by MongoDB
 */
 const initialTaskState = {
 	tasks: [],
@@ -44,7 +24,8 @@ const taskSlice = createSlice({
                 title: task.title,
                 desc: task.desc,
                 deadline: task.deadline,
-				status: 'In progress'	// newly added tasks will ALWAYS be 'In progress'
+				status: 'In progress',	// newly added tasks will ALWAYS be 'In progress'
+				completedDate: null		// newly added tasks will not have a completedDate value yet
             });
 			state.tasks.sort((a, b) => new Date(a.deadline) - new Date(b.deadline));
 		},
@@ -70,6 +51,7 @@ const taskSlice = createSlice({
 			existingTask.desc = editedTask.desc;
 			existingTask.deadline = editedTask.deadline;
 			existingTask.status = editedTask.status ? editedTask.status : 'In progress';
+			existingTask.completedDate = editedTask.completedDate ? editedTask.completedDate : null;
 		},
 		replaceTasks(state, action) {
 			state.tasks = action.payload.tasks;

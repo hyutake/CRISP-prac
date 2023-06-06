@@ -1,29 +1,38 @@
+import { useState } from "react";
 import classes from "./TaskDeadline.module.css";
 import { Tooltip } from "@mui/material";
 
 function TaskDeadline(props) {
+	const [showDeadline, setShowDeadline] = useState(true);
+
+	function toggleDateHandler() {
+		setShowDeadline((prevState) => {
+			return !prevState;
+		})
+	}
+
 	const today = new Date();
-	const date = new Date(props.deadline);
+	const date = new Date(showDeadline ? props.deadline : props.completedDate);
 
 	function convertMilliToDays(ms) {
 		// ms -> sec -> min -> hour -> day
 		return Math.round(ms / (1000 * 60 * 60 * 24));
 	}
 
-	const isOverdueBy = convertMilliToDays(date - today);
-
 	// customising color + tooltip based on deadline
-	let status = '';
-	let statusToolTip = 'Completed!';
+	const isOverdueBy = convertMilliToDays(date - today);
+	// default status and statusToolTip are the set values for Completed Tasks
+	let status = showDeadline ? classes['task-date__overdue'] : classes['task-date__todo'];	// reusing the same color scheme here
+	let statusToolTip = showDeadline ? 'Click to toggle and view date of completion!' : 'Click to toggle and view last deadline!';
 	if(props.status !== 'Completed') {
 		status = classes["task-date__todo"];
-		statusToolTip = `Task due in ${isOverdueBy} days!`;
+		statusToolTip = `Task due in ${isOverdueBy} day(s)!`;
 		if (isOverdueBy === 0) {
 			status = classes["task-date__due"];
 			statusToolTip = `Task due today!!`;
 		} else if (isOverdueBy < 0) {
 			status = classes["task-date__overdue"];
-			statusToolTip = `Task overdue by ${Math.abs(isOverdueBy)} days!!!`;
+			statusToolTip = `Task overdue by ${Math.abs(isOverdueBy)} day(s)!!!`;
 		}
 	}
 
@@ -32,7 +41,7 @@ function TaskDeadline(props) {
 	const year = date.getFullYear();
 
 	return (
-		<Tooltip title={statusToolTip}>
+		<Tooltip title={statusToolTip} onClick={toggleDateHandler}>
 			<div className={`${classes["task-date"]} ${status}`}>
 				<div className={classes["task-date__month"]}>{month}</div>
 				<div className={classes["task-date__day"]}>{day}</div>

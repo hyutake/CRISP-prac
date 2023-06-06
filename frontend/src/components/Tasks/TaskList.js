@@ -37,6 +37,7 @@ function TaskList() {
 						desc={task.desc}
 						deadline={task.deadline}
 						status={task.status}
+						completedDate={task.completedDate}
 					/>
 				))}
 			</div>

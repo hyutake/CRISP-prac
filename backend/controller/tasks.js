@@ -28,8 +28,9 @@ exports.postAddTask = (req, res, next) => {
 	const desc = req.body.desc;
 	const deadline = req.body.deadline;
 	const status = req.body.status;
+	const completedDate = req.body.completedDate;
 
-	const task = new Task(title, desc, deadline, null, status);
+	const task = new Task(title, desc, deadline, null, status, completedDate);
 	// validation (testing)
 	if(!isValidTask(task)) {
 		console.log("Unable to add invalid Task object!");
@@ -54,13 +55,15 @@ exports.postEditTask = (req, res, next) => {
 	const updatedDesc = req.body.desc;
 	const updatedDeadline = req.body.deadline;
 	const updatedStatus = req.body.status;
+	const updatedCompletedDate = req.body.completedDate;
 
 	const updatedTask = new Task(
 		updatedTitle,
 		updatedDesc,
 		updatedDeadline,
 		taskId,
-		updatedStatus
+		updatedStatus,
+		updatedCompletedDate
 	);
 	// validation (testing)
 	if(!isValidTask(updatedTask)) {

@@ -44,7 +44,8 @@ function TaskForm() {
 			title: enteredTitle,
 			desc: enteredDesc,
 			deadline: enteredDeadline,
-			status: 'In progress'
+			status: 'In progress',
+			completedDate: null
 		};
 
 		console.log(enteredTask);

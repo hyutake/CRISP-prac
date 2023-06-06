@@ -4,12 +4,13 @@ const mongodb = require("mongodb");
 const ObjectId = mongodb.ObjectId;
 
 class Task {
-	constructor(title, desc, deadline, id, status) {
+	constructor(title, desc, deadline, id, status, completedDate) {
 		this.title = title;
 		this.desc = desc;
 		this.deadline = deadline;
 		this._id = id; // supposed to be the assigned _id by mongo DB, used to differentiate between add and edit
 		this.status = status;
+		this.completedDate = completedDate;
 	}
 
 	// For both add and edit task
@@ -28,7 +29,8 @@ class Task {
 							title: this.title,
 							desc: this.desc,
 							deadline: this.deadline,
-							status: this.status
+							status: this.status,
+							completedDate: this.completedDate
 						},
 					}
 				);

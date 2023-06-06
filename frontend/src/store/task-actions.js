@@ -1,7 +1,8 @@
 import { taskActions } from "./task-slice";
+import { SERVER_PORT } from "../util/config";
 
 // Backend is listening on port 8080 (for now)
-const url = "http://localhost:8080/tasks";
+const url = `http://localhost:${SERVER_PORT}/tasks`;
 
 // get request
 export const fetchTaskData = () => {
@@ -48,7 +49,8 @@ export const addTaskData = (task) => {
 					title: task.title,
 					desc: task.desc,
 					deadline: task.deadline,
-					status: task.status
+					status: task.status,
+					completedDate: task.completedDate
 				}),
 			});
 
@@ -72,7 +74,8 @@ export const addTaskData = (task) => {
 				title: task.title,
 				desc: task.desc,
 				deadline: task.deadline,
-				status: task.status
+				status: task.status,
+				completedDate: task.completedDate
 			}));
 			console.log(resData.message);
 		} catch (err) {
@@ -94,7 +97,8 @@ export const editTaskData = (task) => {
 					title: task.title,
 					desc: task.desc,
 					deadline: task.deadline,
-					status: task.status
+					status: task.status,
+					completedDate: task.completedDate
 				}),
 			});
 
