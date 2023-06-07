@@ -55,6 +55,7 @@ const taskSlice = createSlice({
 		},
 		replaceTasks(state, action) {
 			state.tasks = action.payload.tasks;
+			state.tasks.sort((a, b) => new Date(a.deadline) - new Date(b.deadline));
 		}
 	},
 });
