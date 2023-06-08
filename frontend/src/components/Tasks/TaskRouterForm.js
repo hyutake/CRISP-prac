@@ -117,7 +117,7 @@ function TaskRouterForm({ task }) {
 							required
 						/>
 					</p>
-					{task.completedDate && <p>
+					{task && task.completedDate && <p>
 						<label htmlFor="completedDate">Date of Completion</label>
 						<input
 							id="completedDate"

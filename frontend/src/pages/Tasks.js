@@ -1,6 +1,7 @@
 import { Await, json, useLoaderData, defer } from "react-router-dom";
 import TaskRouterList from '../components/Tasks/TaskRouterList';
 import { Suspense } from "react";
+import { SERVER_PORT } from "../util/config";
 
 const TasksPage = () => {
     const {tasks} = useLoaderData();
@@ -19,7 +20,7 @@ const TasksPage = () => {
 export default TasksPage;
 
 async function loadTasks() {
-    const response = await fetch('http://localhost:8080/tasks');
+    const response = await fetch(`http://localhost:${SERVER_PORT}/tasks`);
 
     if(!response.ok) {
         throw json({message: 'Could not fetch tasks!'}, {status: 500});
