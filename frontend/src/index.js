@@ -7,14 +7,14 @@ import App, { RouterApp } from './App';
 import store from './store/index';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <Provider store={store}>
-    <RouterApp />
-  </Provider>
-);
-
 // root.render(
-//   <Provider store={store}>ß
-//     <App />
+//   <Provider store={store}>
+//     <RouterApp />
 //   </Provider>
 // );
+
+root.render(
+  <Provider store={store}>ß
+    <App />
+  </Provider>
+);
