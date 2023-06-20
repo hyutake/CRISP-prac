@@ -38,12 +38,14 @@ const taskSlice = createSlice({
 		editTask(state, action){
 			// action will pass the edited task
 			const editedTask = action.payload;
+
+			console.log(editedTask);
 			
 			// find the matching task stored in the redux context 
 			const existingTask = state.tasks.find((task) => task._id === editedTask._id);
 
 			if(!existingTask) {
-				console.log("Task does not exist!");
+				console.log("Task does not exist or using RouterApp!");
 			}
 
 			// update values

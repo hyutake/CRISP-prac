@@ -1,8 +1,8 @@
 import { taskActions } from "./task-slice";
-import { SERVER_PORT } from "../util/config";
+import { SERVER_URL } from "../util/config";
 
 // Backend is listening on port 8080 (for now)
-const url = `http://localhost:${SERVER_PORT}/tasks`;
+const url = `${SERVER_URL}/tasks`;
 
 // get request
 export const fetchTaskData = () => {

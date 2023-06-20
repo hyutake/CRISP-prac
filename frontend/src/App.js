@@ -20,7 +20,7 @@ const router = createBrowserRouter([
 		{ index: true, id: 'tasks', element: <TasksPage />, loader: tasksLoader },
 		{ path: '/:taskId', element: <TaskDetailPage />, loader: taskDetailLoader, action: manipulateTaskAction },
 		{ path: '/new', element: <NewTaskPage />, action: manipulateTaskAction },
-		{ path: '/completed', element: <CompletedTasksPage />, loader: tasksLoader }
+		{ path: '/completed', element: <CompletedTasksPage /> }
 	] }
 ])
  

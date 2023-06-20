@@ -2,12 +2,21 @@ import { useState, Fragment } from "react";
 import classes from "./TaskList.module.css";
 import TaskRouterItem from "./TaskRouterItem";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function TaskRouterList(props) {
 	const [filterTitle, setFilterTitle] = useState("");
+	// Get the relevant tasks from redux context
+	const tasks = useSelector(state => state.task.tasks).filter((task) => {
+		if(props.completed) {
+			return task.status === 'Completed';
+		} else {
+			return task.status !== 'Completed';
+		}
+	});
 
-	// Sort tasks by deadline
-	const tasks = props.tasks.sort((a, b) => new Date(a.deadline) - new Date(b.deadline));
+	// Assign the label
+	const label = props.completed ? 'Completed Tasks' : 'Incomplete Tasks'
 
 	const filterHandler = (event) => {
 		setFilterTitle(event.target.value);
@@ -23,8 +32,9 @@ function TaskRouterList(props) {
 			<input
 				className={classes["task-finder"]}
 				onChange={filterHandler}
+				placeholder="Search for a task here"
 			/> 
-			<h2>{props.label}</h2>
+			<h2>{label}</h2>
 			<div className={classes["task-list"]}>
 				{filteredTasks.map((task) => (
 					<Link key={task._id} to={`/${task._id}`}>

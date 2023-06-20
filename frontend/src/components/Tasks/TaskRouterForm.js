@@ -4,7 +4,7 @@ import Modal from "../UI/Modal";
 import classes from "./TaskForm.module.css";
 import { Form, json, redirect, useNavigate } from "react-router-dom";
 import { FaTimes, FaCheck } from "react-icons/fa";
-import { SERVER_PORT } from "../../util/config";
+import { SERVER_URL } from "../../util/config";
 
 function TaskRouterForm({ task }) {
 	const dispatch = useDispatch();
@@ -16,6 +16,7 @@ function TaskRouterForm({ task }) {
 		// temp. solution - because I'm reusing this form to display tasks in both the 'completed' and 'incomplete' list,
 		// the routing logic to display this form has to be "the same", i.e. the same url format should link to the displaying of the form
 		// BUT, the "origin", i.e. where the user was BEFORE, is different ('/' vs '/completed'), so this is the only way I know how to do this
+		
 		if(taskIsCompleted) {
 			navigate('/completed');
 		} else navigate("..");
@@ -50,6 +51,33 @@ function TaskRouterForm({ task }) {
 		onHide();
 	}
 
+	function addEditHandler() {
+		// button onClick() function seems(?) to exec first, and THEN the form submission triggers
+		// Problem: for adding of tasks, I need the generated _id from mongodb first before I update the context
+		//			Meaning that I need to update the context AFTER sending the request to the backend
+		console.log('testing addEditHandler()');
+		// update redux context here...?
+		// if(task) {
+		// 	dispatch(editTaskData({
+		// 		title: task.title,
+		// 		desc: task.desc,
+		// 		deadline: task.deadline,
+		// 		_id: task._id,
+		// 		status: task.status,
+		// 		completedDate: task.completedDate,
+		// 	}))
+		// } else {
+		// 	dispatch(addTaskData({
+		// 		title: task.title,
+		// 		desc: task.desc,
+		// 		deadline: task.deadline,
+		// 		status: task.status,
+		// 		completedDate: task.completedDate
+		// 	}))
+		// }
+		// onHide()
+	}
+
 	// If task is marked as "Completed", don't provide any button options
 	const buttonDisplay = (!taskIsCompleted &&
 		<div className={classes.actions}>
@@ -61,7 +89,7 @@ function TaskRouterForm({ task }) {
 				{task ? "Delete Task" : "Cancel"}
 				<FaTimes className={classes["cancel-icon"]} />
 			</button>
-			<button>{task ? "Update task" : "Add task"}</button>
+			<button onClick={addEditHandler}>{task ? "Update task" : "Add task"}</button>
 			{task && (
 				<button
 					type="button"
@@ -140,6 +168,7 @@ function TaskRouterForm({ task }) {
 export default TaskRouterForm;
 
 export const action = async ({ request, params }) => {
+	console.log('Add/Edit form submission');
 	const taskId = params.taskId || null;
 	// console.log("taskId in TaskRouterForm action():" + taskId);
 	// get the submitted values
@@ -165,7 +194,7 @@ export const action = async ({ request, params }) => {
 
 	// "configure" the route and send request
 	const route = taskId ? "edit" : "add";
-	let url = `http://localhost:${SERVER_PORT}/tasks/${route}`;
+	let url = `${SERVER_URL}/tasks/${route}`;
 	const response = await fetch(url, {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },

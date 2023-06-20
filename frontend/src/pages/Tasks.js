@@ -1,16 +1,20 @@
 import { Await, json, useLoaderData, defer } from "react-router-dom";
 import TaskRouterList from '../components/Tasks/TaskRouterList';
 import { Suspense } from "react";
-import { SERVER_PORT } from "../util/config";
+import { SERVER_URL } from "../util/config";
+import { useDispatch } from "react-redux";
+import { taskActions } from "../store/task-slice";
 
 const TasksPage = () => {
     const {tasks} = useLoaderData();
+    const dispatch = useDispatch();
+	
     return (
-        <Suspense fallback={<p>Loading...</p>}>
+        <Suspense fallback={<p style={{textAlign: 'center'}}>Loading...</p>}>
             <Await resolve={tasks}>
                 {(loadedTasks) => {
-                    const unfinishedTasks = loadedTasks.filter((task => task.status !== 'Completed'))
-                    return <TaskRouterList tasks={unfinishedTasks} label='Incomplete Tasks' />
+                    dispatch(taskActions.replaceTasks({tasks: loadedTasks}));
+                    return <TaskRouterList completed={false} />
                 }}
             </Await>
         </Suspense>
@@ -20,7 +24,7 @@ const TasksPage = () => {
 export default TasksPage;
 
 async function loadTasks() {
-    const response = await fetch(`http://localhost:${SERVER_PORT}/tasks`);
+    const response = await fetch(`${SERVER_URL}/tasks`);
 
     if(!response.ok) {
         throw json({message: 'Could not fetch tasks!'}, {status: 500});

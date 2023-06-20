@@ -1,12 +1,11 @@
 const mongodb = require("mongodb");
 const MongoClient = mongodb.MongoClient;
-const config = require('./config');
 
 let _db;
 
 const mongoConnect = (callback) => {
 	MongoClient.connect(
-		config.MONGO_URL
+		`mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_URL}/${process.env.MONGODB_NAME}?retryWrites=true&w=majority`
 	)
 		.then((client) => {
 			console.log("Connected!");
