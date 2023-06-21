@@ -1,10 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-
-/* 
-    tasks: array of task objects -> { title:___, desc:___, deadline:___ }, 'title' & 'desc' are Strings, 'deadline' is a Date object
-*/
-
+import useFetchTasks, { fetchTasks, useInitTasks } from "./useFetchTasks";
 const initialTaskState = {
   tasks: [],
   //quantity: 0,
@@ -24,7 +20,6 @@ const taskSlice = createSlice({
           description: task.description,
           deadline: task.deadline,
         })
-    window.location.reload();
     },
     removeTask(state, action) {
       // action will pass the id of a task
@@ -38,24 +33,31 @@ const taskSlice = createSlice({
         axios.delete(`http://localhost:3001/tasks/${id}`);
       }
     },
-    editTask(state, action) {
-		
+    async editTask(state, action) { 
+      //dispatch can be taken in as arg
       // action will pass the edited task
       console.log(action.payload);
       const { id, title, description, deadline, completed } = action.payload;
 	
       //Make the PUT request to update the task on the backend
-      axios.put(`http://localhost:3001/tasks/${id}`, {
+      await axios.put(`http://localhost:3001/tasks/${id}`, {
         title,
         description,
         deadline,
         completed,
       });
-      window.location.reload();
+      //fetchTasks
+      //setTasks
+
+      //refactor into another event, 
+      //have another actions file
+      
     },
     setTask(state, action) {
-	  action.payload.sort((a, b) => new Date(a.deadline) - new Date(b.deadline));
-      state.tasks = action.payload;
+	  //action.payload.sort((a, b) => new Date(a.deadline) - new Date(b.deadline));
+      while (state.tasks != action.payload){
+        state.tasks = action.payload;
+      }
     },
   },
 });

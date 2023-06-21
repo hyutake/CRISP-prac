@@ -8,6 +8,8 @@ import { useDispatch } from "react-redux";
 import { taskActions } from "../../store/task-slice";
 import { uiActions } from "../../store/ui-slice";
 
+import { removeTask } from "../../store/task-slice";
+
 function TaskItem(props) {
   const [showDelete, setShowDelete] = useState(false);
   const dispatch = useDispatch();
@@ -38,6 +40,7 @@ function TaskItem(props) {
 
   const deleteTaskHandler = () => {
     dispatch(taskActions.removeTask(props.id));
+    
   };
 
   const editTaskHandler = () => {
