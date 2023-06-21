@@ -5,10 +5,10 @@ import Card from "../UI/Card";
 import TaskDeadline from "./TaskDeadline";
 
 import { useDispatch } from "react-redux";
-import { taskActions } from "../../store/task-slice";
+import { taskStateActions } from "../../store/task-slice";
 import { uiActions } from "../../store/ui-slice";
 
-import { removeTask } from "../../store/task-slice";
+import { deleteTask } from "../../store/task-actions";
 
 function TaskItem(props) {
   const [showDelete, setShowDelete] = useState(false);
@@ -39,8 +39,11 @@ function TaskItem(props) {
   };
 
   const deleteTaskHandler = () => {
-    dispatch(taskActions.removeTask(props.id));
-    
+    const proceed = window.confirm("Delete task?");
+    if (proceed){
+      dispatch(taskStateActions.removeTask(props.id));
+      dispatch(deleteTask(props.id));
+    }
   };
 
   const editTaskHandler = () => {
@@ -55,8 +58,8 @@ function TaskItem(props) {
 
   // title, desc, deadline
   return (
-    <li onMouseMove={mouseMoveHandler} onMouseLeave={mouseLeaveHandler}>
-      <Card className={classes["task-item"]}>
+    <li onMouseMove={mouseMoveHandler} onMouseLeave={mouseLeaveHandler} key={props.id} >
+      <Card className={classes["task-item"]} >
         <TaskDeadline date={props.deadline} />
         <h2>{props.title}</h2>
         <p className={classes["task-item__description"]}>{props.desc}</p>

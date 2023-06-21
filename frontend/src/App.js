@@ -4,9 +4,8 @@ import TaskList from "./components/Tasks/TaskList";
 import TaskForm from "./components/Tasks/TaskForm";
 import MainHeader from "./components/Layout/MainHeader";
 import { useEffect } from "react";
-import { taskActions } from "./store/task-slice";
 import "./App.css"; // Import your CSS file
-import { fetchTasks, useInitTasks } from "./store/useFetchTasks";
+import { useInitTasks } from "./store/task-actions";
 
 function App() {
   const showTaskForm = useSelector((state) => state.ui.showTaskFormModal);

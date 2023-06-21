@@ -1,10 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
-import { taskActions } from "../../store/task-slice";
 import { useRef } from "react";
 import Modal from "../UI/Modal";
 import classes from "./TaskForm.module.css";
 import { uiActions } from "../../store/ui-slice";
-import { fetchTasks } from "../../store/useFetchTasks";
+import { addTask, editTask } from "../../store/task-actions";
 
 function TaskForm() {
   const dispatch = useDispatch();
@@ -51,35 +50,11 @@ function TaskForm() {
     };
 
     if (isEditTask) {
-      console.log("in taskform, edited task:", editedTask);
-        dispatch(taskActions.editTask(editedTask))
-        dispatch(fetchTasks())
-          .then((tasks) => {
-            // Handle the fetched tasks
-            dispatch(taskActions.setTask(tasks));
-            console.log("editing tasks: " + tasks);
-          })
-          .catch((error) => {
-            // Handle error if any
-            console.log(error);
-          });
-
-      //dispatch(fetchTasks());
-
+      //backend and front
+      dispatch(editTask(editedTask));
     } else {
-      dispatch(taskActions.addTask(editedTask));
-
-      dispatch(fetchTasks())
-        .then((tasks) => {
-          // Handle the fetched tasks
-          dispatch(taskActions.setTask(tasks));
-          console.log(tasks);
-        })
-        .catch((error) => {
-          // Handle error if any
-          console.log(error);
-        });
-      //dispatch(fetchTasks());
+      //backend and front lol
+      dispatch(addTask(editedTask));
     }
 
     onHide();
