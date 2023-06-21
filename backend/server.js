@@ -86,7 +86,6 @@ mongoose
     app.listen(3001, () => {
       console.log('Node API app is running on port 3001');
     });
-    //store.dispatch(fetchTasks());
   })
   .catch((error) => {
     console.log(error);
